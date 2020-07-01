@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://xmlns.jcp.org/xml/ns/javaee" xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-app_3_1.xsd" id="WebApp_ID" version="3.1">
+  <display-name>Coupon_People_Ver2</display-name>
+  <welcome-file-list>
+    <welcome-file>index.html</welcome-file>
+    <welcome-file>index.htm</welcome-file>
+    <welcome-file>index.jsp</welcome-file>
+    <welcome-file>default.html</welcome-file>
+    <welcome-file>default.htm</welcome-file>
+    <welcome-file>default.jsp</welcome-file>
+  </welcome-file-list>
+  
+	<!-- user -->
+
+	<servlet>
+	  	<servlet-name>UserFrontController</servlet-name>
+	  	<servlet-class>com.couponPeople.app.user.UserFrontController</servlet-class>
+	</servlet>
+	
+	<servlet-mapping>
+  		<servlet-name>UserFrontController</servlet-name>
+  		<url-pattern>*.us</url-pattern>
+	</servlet-mapping>
+	
+	<!-- coupon -->
+  
+	<servlet>
+	  	<servlet-name>CouponFrontController</servlet-name>
+	  	<servlet-class>com.couponPeople.app.coupon.CouponFrontController</servlet-class>
+	</servlet>
+	
+	<servlet-mapping>
+  		<servlet-name>CouponFrontController</servlet-name>
+  		<url-pattern>*.cu</url-pattern>
+	</servlet-mapping>
+
+	<!-- trade -->
+  
+	<servlet>
+	  	<servlet-name>TradeFrontController</servlet-name>
+	  	<servlet-class>com.couponPeople.app.trade.TradeFrontController</servlet-class>
+	</servlet>
+	
+	<servlet-mapping>
+  		<servlet-name>TradeFrontController</servlet-name>
+  		<url-pattern>*.tr</url-pattern>
+	</servlet-mapping>
+  
+	<!-- comment -->
+
+	<servlet>
+	  	<servlet-name>CommentFrontController</servlet-name>
+	  	<servlet-class>com.couponPeople.app.comment.CommentFrontController</servlet-class>
+	</servlet>
+	
+	<servlet-mapping>
+  		<servlet-name>CommentFrontController</servlet-name>
+  		<url-pattern>*.co</url-pattern>
+	</servlet-mapping>
+  
+	<!-- review -->
+
+	<servlet>
+	  	<servlet-name>ReviewFrontController</servlet-name>
+	  	<servlet-class>com.couponPeople.app.review.ReviewFrontController</servlet-class>
+	</servlet>
+	
+	<servlet-mapping>
+  		<servlet-name>ReviewFrontController</servlet-name>
+  		<url-pattern>*.re</url-pattern>
+	</servlet-mapping>
+	
+</web-app>

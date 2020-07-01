@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Config 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="Comment">
+	
+	<insert id="createComment" parameterType="commentBean">
+	INSERT INTO HR.COUPON_COMMENT
+	(COMMENT_NUM, COMMENT_USER, COMMENT_COUPON, COMMENT_TEXT, COMMENT_DATETIME, IS_DELETED, IS_SECRET)
+	VALUES(COUPON.COMMENT, #{comment_user}, ${comment_coupon}, #{comment_text}, SYSDATE, 0 , ${is_secret} )
+	</insert>
+	
+	<select id="getCurrentSeq" resultType="_int">
+		SELECT COUPON_COMMENT_SEQ.CURRVAL FROM DUAL
+	</select>
+	
+	<select id="getComments" parameterType="_int" resultType="commentBean">
+		SELECT * FROM HR.COUPON_COMMENT
+		WHERE COMMENT_COUPON = ${coupon_num}
+	</select>
+	
+	<update id="deleteComment" parameterType="commentBean">
+		UPDATE HR.COUPON_COMMENT
+		SET IS_DELETED=1
+		WHERE COMMENT_NUM=${comment_coupon} AND COUPON_USER=#{comment_user}
+	</update>
+	
+	<select id="getUserComments" parameterType="string" resultType="commentBean">
+		SELECT * FROM HR.COUPON_COMMENT
+		WHERE COMMENT_USER=#{user_email}
+	</select>
+	
+</mapper>

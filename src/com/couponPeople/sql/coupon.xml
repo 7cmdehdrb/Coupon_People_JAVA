@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Config 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="Coupon">
+	<insert id="createCoupon" parameterType="couponBean">
+		<![CDATA[
+		INSERT INTO HR.COUPON_COUPON
+		(COUPON_NUM, COUPON_NAME, CONPON_SERIAL, COUPON_IMAGE, COUPON_DESCRIPTION, COUPON_PRICE, COUPON_TYPE, COUPON_OWNER, COUPON_BUYER, IS_COUPON_FINISHED, IS_COUPON_DETERMINED, IS_COUPON_CHEATED, COUPON_FINISH_DATE)
+		VALUES(COUPON_SEQ.NEXTVAL, #{coupon_name}, #{coupon_serial}, #{coupon_image}, #{coupon_description}, ${coupon_price}, #{coupon_type}, #{coupon_owner}, NULL, 0 , 0 , 0 , SYSDATE)
+		]]>
+	</insert>
+	
+	<select id="getCouponList" resultType="couponBean">
+		SELECT COUPON_NUM, COUPON_NAME, COUPON_DESCRIPTION, COUPON_PRICE, COUPON_TYPE, COUPON_OWNER
+		FROM HR.COUPON_COUPON
+		WHERE IS_COUPON_FINISHED = 0
+	</select>
+	
+	<select id="getCouponDetail" parameterType="_int" resultType="couponBean">
+		SELECT COUPON_NUM, COUPON_NAME, COUPON_DESCRIPTION, COUPON_PRICE, COUPON_TYPE, COUPON_OWNER
+		FROM HR.COUPON_COUPON
+		WHERE COUPON_NUM = ${coupon_num}
+	</select>
+	
+	<delete id="removeCoupon" parameterType="map">
+		<![CDATA[
+		DELETE FROM HR.COUPON_COUPON
+		WHERE COUPON_NUM = ${coupon_num} AND COUPON_OWNER = #{coupon_owner}
+		]]>
+	</delete>
+	
+	<select id="searchCoupon" parameterType="map" resultType="couponBean">
+		<![CDATA[
+		SELECT COUPON_NUM, COUPON_NAME, COUPON_DESCRIPTION, COUPON_PRICE, COUPON_TYPE, COUPON_OWNER
+		FROM HR.COUPON_COUPON
+		WHERE ${search_field} = #{search_value} IS_COUPON_FINISHED = 0
+		]]>
+	</select>
+	
+</mapper>
