@@ -1,10 +1,13 @@
 package com.couponPeople.app.user;
 
 import java.io.PrintWriter;
+import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+
+import org.apache.jasper.tagplugins.jstl.core.ForEach;
 
 import com.couponPeople.action.Action;
 import com.couponPeople.action.ActionForward;
@@ -17,8 +20,6 @@ public class KakaoLoginOkAction implements Action {
 	public ActionForward execute(HttpServletRequest request, HttpServletResponse response) throws Exception {
 		// TODO Auto-generated method stub
 
-		System.out.println("SSSS");
-		
 		request.setCharacterEncoding("UTF-8");
 
 		ActionForward forward = new ActionForward();
@@ -47,21 +48,10 @@ public class KakaoLoginOkAction implements Action {
 			int db_login_method = user_dao.checkKakaoExisted(user.getEmail());
 			// 0: not existed, 1: kakao, 2: local
 			
-			System.out.println(db_login_method);
-
-			if (db_login_method == 1) {
-				// already signed up
-
-				session.setAttribute("email", user.getEmail());
-				session.setAttribute("nickname", user.getNickname());
-				session.setAttribute("loginMethod", user.getLogin_method());
-				session.setAttribute("isAdmin", user.getIs_admin());
-
-				forward.setRedirect(false);
-				forward.setPath("/app/core/index.jsp");
-
-			} else if (db_login_method == 0) {
-
+			switch (db_login_method) {
+			case 0:
+				// not existed
+				
 				if (user_dao.kakaoSignup(user)) {
 					// successfully created
 
@@ -76,11 +66,29 @@ public class KakaoLoginOkAction implements Action {
 				} else {
 					throw new Exception();
 				}
+				
+				break;
+			
+			case 1:
+				// kakao
 
-			} else {
+				session.setAttribute("email", user.getEmail());
+				session.setAttribute("nickname", user.getNickname());
+				session.setAttribute("loginMethod", user.getLogin_method());
+				session.setAttribute("isAdmin", user.getIs_admin());
+
+				forward.setRedirect(false);
+				forward.setPath("/app/core/index.jsp");
+				
+				break;
+				
+			case 2:
+				throw new Exception();
+				
+			default:
 				throw new Exception();
 			}
-
+			
 		} catch (Exception e) {
 			// TODO: handle exception
 

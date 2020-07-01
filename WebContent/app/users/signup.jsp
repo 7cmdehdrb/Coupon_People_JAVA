@@ -73,12 +73,14 @@ h1 {
 						class="login_input block w-2/3 mx-auto my-10 text-center text-xl border-b-4"
 						placeholder="(필수)닉네임" type="text" name="nickname" id="nickname"
 						required="required" />
+					<%--
 					<div
 						class="login_input block w-2/3 mx-auto my-10 text-center text-xl">
 						<label class="extraLogin" for="profileImage">(필수)프로필 사진</label> <br>
 						<input class="extraLogin text-base" type="file"
 							name="profileImage" id="profileImage" required="required" />
 					</div>
+					 --%>
 					<input
 						class="login_input block w-2/3 mx-auto my-10 text-center text-xl border-b-4"
 						placeholder="(필수)비밀번호" type="password" name="password"
@@ -87,7 +89,7 @@ h1 {
 						placeholder="(필수)비밀번호 확인" type="password" name="re_password"
 						id="re_password" required="required" /> <label
 						class="extraLogin block w-2/3 mx-auto my-5 text-center text-xl">관심분야</label>
-
+					<%--
 					<div class="login_input block w-2/3 mx-auto text-center text-xl">
 						<label class="extraLogin" for="interest1">상품권</label> <input
 							type="checkbox" name="interest" id="interest1" value="상품권" /> <label
@@ -102,6 +104,7 @@ h1 {
 							class="extraLogin" for="interest6">편의점/마트</label> <input
 							type="checkbox" name="interest" id="interest6" value="편의점/마트" />
 					</div>
+					 --%>
 
 					<div class="text-center text-3xl my-5 mx-auto">약관동의</div>
 					<div class="block my-4 text-center text-xl">

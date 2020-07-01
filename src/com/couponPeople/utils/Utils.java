@@ -98,7 +98,7 @@ public class Utils {
 
 	}
 
-	public void sendPasswordResetGmail(String receiveUser, String content) {
+	public boolean sendPasswordResetGmail(String receiveUser, String content) {
 
 		prop.put("mail.smtp.host", "smtp.gmail.com");
 		prop.put("mail.smtp.port", 465);
@@ -120,7 +120,7 @@ public class Utils {
 
 			message.setSubject("RESET YOUR PASSWORD?");
 
-			message.setContent("CLICK <a href=\"http://localhost:8085/Coupon_People_Ver2/users/confirmResetPasswordOkAction.us?id="
+			message.setContent("CLICK <a href=\"http://localhost:8085/Coupon_People_Ver2/users/resetPasswordOkAction.us?emailSecret="
 					+ content + "\">HERE</a> TO RESET YOUR PASSWORD!", "text/html");
 
 			Transport.send(message);
@@ -128,11 +128,14 @@ public class Utils {
 		} catch (AddressException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
+			return false;
 		} catch (MessagingException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
+			return false;
 		}
 
+		return true;
 	}
 
 }

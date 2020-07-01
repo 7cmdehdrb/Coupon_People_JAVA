@@ -1,4 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<jsp:useBean id="user_dao2" class="com.couponPeople.app.user.dao.UserDAO"></jsp:useBean>
 <div class="flex justify-between h-24 py-4">
     <div class="flex-1">.</div>
     <div class="flex-1">
@@ -17,6 +18,10 @@
 	            <a href="${pageContext.request.contextPath}/app/users/login.jsp"><div style="cursor: pointer;" class="text-center inline-block mx-2 hover:text-gray-700">로그인</div></a>			
 			</c:when>
 			<c:otherwise>
+				<%
+					String user_email = String.valueOf(request.getSession().getAttribute("email"));
+				%>
+				<a href="${pageContext.request.contextPath}/app/users/chargePoint.jsp"><div style="cursor: pointer;" class="text-center inline-block mx-2 hover:text-gray-700">충전하기 (잔액: <%= user_dao2.getCurrentMoney(user_email) %>) </div></a>
 		        <a href="#"><div style="cursor: pointer;" class="text-center inline-block mx-2 hover:text-gray-700">${nickname} 님</div></a>
 		        <a href="${pageContext.request.contextPath}/users/logoutOkAction.us"><div style="cursor: pointer;" class="text-center inline-block mx-2 hover:text-gray-700">로그아웃</div></a>			
 			</c:otherwise>

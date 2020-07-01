@@ -112,19 +112,81 @@ public class UserDAO {
 	}
 
 	public boolean verifyEmail(String emailSecret) {
-		boolean check = false;
+		int result = 0;
 
 		try {
-			if (sqlsession.update("User.verifyEmail", emailSecret) == 1) {
-				check = true;
-			}
+			result = sqlsession.update("User.verifyEmail", emailSecret);
 		} catch (Exception e) {
 			// TODO: handle exception
 			System.err.println(e);
 			System.out.println("ERROR ON VERIFY EMAIL");
 		}
 
-		return check;
+		return result == 1;
+	}
+	
+	public boolean setEmailSecret(UserBean user) {
+		int result = 0;
+		
+		try {
+			result = sqlsession.update("User.setEmailSecret", user);
+		} catch (Exception e) {
+			// TODO: handle exception
+			System.err.println(e);
+			System.out.println("ERROR ON SET EMAIL SECRET");
+		}
+		
+		return result == 1;
+	}
+	
+	public boolean resetPassword(UserBean user) {
+		
+		int result = 0;
+		
+		try {
+			result = sqlsession.update("User.resetPassword", user);
+		} catch (Exception e) {
+			// TODO: handle exception
+			System.err.println(e);
+			System.out.println("ERROR ON RESET PASSWORD");
+		}
+		
+		return result == 1;
+	}
+	
+	public int getCurrentMoney(String email) {
+		int currentMoney = 0;
+		
+		try {
+			currentMoney = (Integer)sqlsession.selectOne("User.getCurrentMoney", email);
+		} catch (Exception e) {
+			// TODO: handle exception
+			System.err.println(e);
+			System.out.println("ERROR ON GET CURRNENT MONEY");
+		}
+		
+		return currentMoney;
+	}
+	
+	public boolean chargeMoney(UserBean user, int chargeMoney) {
+		
+		int currentMoney = 0;
+		int result = 0;
+		
+		try {
+			currentMoney = getCurrentMoney(user.getEmail());
+			
+			user.setMoney(currentMoney + chargeMoney);
+			
+			result = sqlsession.update("User.chargeMoney", user);
+		} catch (Exception e) {
+			// TODO: handle exception
+			System.err.println(e);
+			System.out.println("ERROR ON CHARGE MONEY");
+			return false;
+		}
+		
+		return result == 1 ? true : false;
 	}
 
 }

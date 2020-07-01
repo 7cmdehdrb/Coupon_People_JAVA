@@ -9,6 +9,7 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "bootstrap-select": "^1.13.18",
     "gulp-csso": "^4.0.1",
     "gulp-postcss": "^8.0.0",
     "gulp-sass": "^4.1.0",

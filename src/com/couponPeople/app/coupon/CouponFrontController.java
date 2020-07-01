@@ -1,4 +1,4 @@
-package com.couponPeople.app.user;
+package com.couponPeople.app.coupon;
 
 import java.io.IOException;
 
@@ -12,7 +12,7 @@ import com.couponPeople.action.Action;
 import com.couponPeople.action.ActionForward;
 
 @SuppressWarnings("serial")
-public class UserFrontController extends HttpServlet {
+public class CouponFrontController extends HttpServlet {
 
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
@@ -35,123 +35,71 @@ public class UserFrontController extends HttpServlet {
 		// Condition will be here ///
 
 		switch (command) {
-		case "/users/signupOkAction.us":
-			action = new SignupOkAction();
-
-			try {
-				forward = action.execute(req, resp);
-			} catch (Exception e) {
-				// TODO: handle exception
-				System.err.println(e);
-				System.out.println("ERROR ON FRONT CONTROLLOR - SIGNUP");
-			}
-
-			break;
-
-		case "/users/checkEmailValidOkAction.us":
-			action = new CheckEmailValidOkAction();
-
-			try {
-				forward = action.execute(req, resp);
-			} catch (Exception e) {
-				// TODO: handle exception
-				System.err.println(e);
-				System.out.println("ERROR ON FRONT CONTROLLOR - CHECK EMAIL VALID");
-			}
-
-			break;
-
-		case "/users/loginOkAction.us":
-			action = new LoginOkAction();
-
-			try {
-				forward = action.execute(req, resp);
-			} catch (Exception e) {
-				// TODO: handle exception
-				System.err.println(e);
-				System.out.println("ERROR ON FRONT CONTROLLOR - LOGIN");
-			}
-
-			break;
-			
-		case "/users/kakaoLoginOkAction.us":
-			action = new KakaoLoginOkAction();
+		case "/coupons/createCouponOkAction.cu":
+			action = new CreateCouponOkAction();
 			
 			try {
 				forward = action.execute(req, resp);
 			} catch (Exception e) {
 				// TODO: handle exception
 				System.err.println(e);
-				System.out.println("ERROR ON FRONT CONTROLLOR - LOGIN");
+				System.out.println("ERROR ON COUPON FRONT CONTROLLER - CREATE COUPON");
 			}
 			
 			break;
-
-		case "/users/logoutOkAction.us":
-			action = new LogoutOkAction();
-
-			try {
-				forward = action.execute(req, resp);
-			} catch (Exception e) {
-				// TODO: handle exception
-				System.err.println(e);
-				System.out.println("ERROR ON FRONT CONTROLLOR - LOGOUT");
-			}
-
-			break;
-
-		case "/users/verifyEmailAction.us":
-			action = new VerifyEmailAction();
-
-			try {
-				forward = action.execute(req, resp);
-			} catch (Exception e) {
-				// TODO: handle exception
-				System.err.println(e);
-				System.out.println("ERROR ON FRONT CONTROLLOR - VERIFY EMAIL");
-			}
-
-			break;
 			
-		case "/users/resetPasswordAction.us":
-			action = new ResetPasswordAction();
+		case "/coupons/getCouponDetail.cu":
+			action = new GetCouponDetail();
 			
 			try {
 				forward = action.execute(req, resp);
 			} catch (Exception e) {
 				// TODO: handle exception
 				System.err.println(e);
-				System.out.println("ERROR ON FRONT CONTROLLOR - RESET PASSWORD");
+				System.out.println("ERROR ON COUPON FRONT CONTROLLER - DELETE COUPON");
 			}
 			
 			break;
 			
-		case "/users/resetPasswordOkAction.us":
-			action = new ResetPasswordOkAction();
+		case "/coupon/getCouponList.cu":
+			action = new GetCouponList();
 			
 			try {
 				forward = action.execute(req, resp);
 			} catch (Exception e) {
 				// TODO: handle exception
 				System.err.println(e);
-				System.out.println("ERROR ON FRONT CONTROLLOR - RESET PASSWORD OK");
+				System.out.println("ERROR ON COUPON FRONT CONTROLLER - DELETE COUPON");
 			}
 			
 			break;
 			
-		case "/users/payOkAction.us":
-			action = new PayOkAction();
+		case "/coupons/deleteCouponOkAction.cu":
+			action = new DeleteCouponOkAction();
 			
 			try {
 				forward = action.execute(req, resp);
 			} catch (Exception e) {
 				// TODO: handle exception
 				System.err.println(e);
-				System.out.println("ERROR ON FRONT CONTROLLOR - PAY OK");
+				System.out.println("ERROR ON COUPON FRONT CONTROLLER - DELETE COUPON");
 			}
 			
 			break;
-
+			
+		case "/coupons/searchCoupon.cu":
+			action = new SearchCouponAction();
+			
+			try {
+				forward = action.execute(req, resp);
+			} catch (Exception e) {
+				// TODO: handle exception
+				System.err.println(e);
+				System.out.println("ERROR ON COUPON FRONT CONTROLLER - DELETE COUPON");
+			}
+			
+			break;
+		
 		default:
 			forward = new ActionForward();
 			forward.setRedirect(false);

@@ -94,8 +94,8 @@ h1 {
 				class="login_box container flex w-full justify-between text-center mx-auto py-2">
 				<a href="${pageContext.request.contextPath}/app/users/signup.jsp"
 					class="flex-1"><i class="fas fa-sign-in-alt"></i> 회원가입</a> <a
-					href="${pageContext.request.contextPath}/app/users/findPassword.jsp" class="flex-1"><i
-					class="fas fa-user-secret"></i> 비밀번호 찾기</a>
+					href="${pageContext.request.contextPath}/app/users/resetPassword.jsp" class="flex-1"><i
+					class="fas fa-user-secret"></i> 비밀번호 재설정</a>
 			</div>
 
 			<hr />
