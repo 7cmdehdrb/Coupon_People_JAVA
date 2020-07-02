@@ -25,13 +25,11 @@ public class SignupOkAction implements Action {
 
 		String email = request.getParameter("email");
 		String nickname = request.getParameter("nickname");
-		String profileImage = request.getParameter("profileImage");
 		String password = request.getParameter("password");
 //		String[] interests = request.getParameterValues("interest");
 
 		user.setEmail(email);
 		user.setNickname(nickname);
-		user.setProfile_image(profileImage);
 		user.setPassword(utils.hashFunction(password));
 		user.setMoney(10000);
 		user.setLogin_method("LOCAL");
@@ -49,7 +47,7 @@ public class SignupOkAction implements Action {
 			response.setContentType("text/html;charset=UTF-8");
 			out.println("<script>");
 			out.println("alert('This user is already existed')");
-			out.println("location.href='http://localhost:8085/Coupon_People_Ver2/app/users/login.jsp'");
+			out.println("location.href='http://localhost:8085/Coupon_People_Ver2/app/user/joinForm.jsp'");
 			out.println("</script>");
 			out.close();
 
@@ -67,7 +65,7 @@ public class SignupOkAction implements Action {
 				response.setContentType("text/html;charset=UTF-8");
 				out.println("<script>");
 				out.println("alert('Please check your email to verify your account')");
-				out.println("location.href='http://localhost:8085/Coupon_People_Ver2/app/users/login.jsp'");
+				out.println("location.href='http://localhost:8085/Coupon_People_Ver2/app/user/loginForm.jsp'");
 				out.println("</script>");
 				out.close();
 

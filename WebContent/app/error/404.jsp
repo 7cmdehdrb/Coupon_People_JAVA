@@ -1,13 +1,13 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-<%@ include file="../partial/head.jsp"%>
+    <%@ include file="../partial/head.jsp" %>
 </head>
 <body>
-<script>
-	location.href = "/${pageContext.request.contextPath}/app/core/index.jsp";
-</script>
+
+    <h1>404 NOT FOUND</h1>
+    
 </body>
 </html>

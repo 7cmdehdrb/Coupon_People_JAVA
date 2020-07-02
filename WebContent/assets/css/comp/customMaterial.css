@@ -1,0 +1,9 @@
+.custom .demo-card-square {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+}
+.mdl-layout__header {overflow: visible;}
+.mdl-list__item {overflow: visible;}
+.mdl-list__item > a {display: block; width: 100%;}
+.custom .mdl-card h4 {padding-left: 16px; padding-top: 16px}

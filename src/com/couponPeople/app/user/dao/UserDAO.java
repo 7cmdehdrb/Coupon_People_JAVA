@@ -188,5 +188,47 @@ public class UserDAO {
 		
 		return result == 1 ? true : false;
 	}
+	
+	public boolean changePassword(HashMap<String, String> data) {
+		int result = 0;
+		
+		try {
+			result = sqlsession.update("User.changePassword", data);
+		} catch (Exception e) {
+			// TODO: handle exception
+			System.err.println(e);
+			System.out.println("ERROR ON CHANGE PW");
+		}
+		
+		return result == 1;
+	}
+	
+	public UserBean getUserProfile(String email) {
+		UserBean user = new UserBean();
+		
+		try {
+			user = (UserBean)sqlsession.selectOne("User.getUserProfile", email);
+		} catch (Exception e) {
+			// TODO: handle exception
+			System.err.println(e);
+			System.out.println("ERROR ON GET USER PROFILE");
+		}
+		
+		return user;
+	}
+	
+	public boolean updateUser(UserBean user) {
+		int result = 0;
+		
+		try {
+			result = sqlsession.update("User.updateUser", user);
+		} catch (Exception e) {
+			// TODO: handle exception
+			System.err.println(e);
+			System.out.println("ERROR ON UPDATE USER");
+		}
+		
+		return result == 1;
+	}
 
 }

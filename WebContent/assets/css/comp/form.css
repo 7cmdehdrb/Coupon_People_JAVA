@@ -1,0 +1,19 @@
+@charset "utf-8";
+/* *******************************************************
+ * filename : form.css
+ * description : 폼 관련 css
+ * date : 2020-06-15
+******************************************************** */
+.custom-form .mdl-textfield {display: block;}
+.custom .page-content h2{text-align: center;}
+.custom .page-content button {width: 100%;}
+.custom .page-content a {width: 100%; box-sizing: border-box;}
+.custom.user-detail .page-content .mdl-card__actions a {text-align: left;}
+.kakao-icon img {width:24px;}
+.custom form fieldset .mdl-textfield {width: 100%;}
+.custom .mdl-radio:not(:first-child) {margin-left: 6px;}
+.form-guidance {font-size: 16px;
+    margin: 9px 0px 0px 8px;
+    display: inline-block;}
+    
+.mdl-button:not(:first-child) {margin-top: 12px}

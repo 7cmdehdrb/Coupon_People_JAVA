@@ -22,7 +22,7 @@
 		<![CDATA[
 		INSERT INTO HR.COUPON_USER
 		(USERNAME, PROFILE_IMAGE, EMAIL, PASSWORD, MONEY, LOGIN_METHOD, EMAIL_SECRET, EMAIL_VALID, IS_ACTIVATED, IS_ADMIN, IS_EMAIL_PUBLIC, IS_INTEREST_PUBLIC, IS_MONEY_PUBLIC)
-		VALUES(#{nickname}, #{profile_image}, #{email}, #{password}, ${money}, #{login_method} , #{email_secret}, ${email_valid} , ${is_activated} , ${is_admin} , ${is_email_public} , ${is_interest_public} , ${is_money_public} )
+		VALUES(#{nickname}, NULL, #{email}, #{password}, ${money}, #{login_method} , #{email_secret}, ${email_valid} , ${is_activated} , ${is_admin} , ${is_email_public} , ${is_interest_public} , ${is_money_public} )
 		]]>
 	</insert>
 	
@@ -37,7 +37,7 @@
 	<select id="login" parameterType="userBean" resultType="map">
 		<![CDATA[
 		SELECT USERNAME as nickname, EMAIL_VALID as email_valid FROM HR.COUPON_USER
-		WHERE EMAIL=#{email} AND PASSWORD=#{password} AND LOGIN_METHOD='LOCAL' AND IS_ACTIVATED=1 AND IS_ADMIN=${is_admin}
+		WHERE EMAIL=#{email} AND PASSWORD=#{password} AND LOGIN_METHOD='LOCAL' AND IS_ACTIVATED=1
 		]]>
 	</select>
 	
@@ -76,6 +76,30 @@
 		UPDATE HR.COUPON_USER
 		SET MONEY=#{money}
 		WHERE EMAIL=#{email}
+		]]>
+	</update>
+	
+	<update id="changePassword" parameterType="map">
+		<![CDATA[
+		UPDATE HR.COUPON_USER
+		SET PASSWORD=#{new_pw}
+		WHERE EMAIL=#{email} AND PASSWORD=#{old_pw} AND LOGIN_METHOD='LOCAL'
+		]]>
+	</update>
+	
+	<select id="getUserProfile" parameterType="string" resultType="userBean">
+		<![CDATA[
+		SELECT EMAIL, USERNAME as NICKNAME, PROFILE_IMAGE, MONEY, LOGIN_METHOD, IS_EMAIL_PUBLIC, IS_MONEY_PUBLIC 
+		FROM HR.COUPON_USER
+		WHERE EMAIL=#{email} AND EMAIL_VALID=1 AND IS_ACTIVATED=1
+		]]>
+	</select>
+	
+	<update id="updateUser" parameterType="userBean">
+		<![CDATA[
+		UPDATE HR.COUPON_USER
+		SET USERNAME=#{nickname}, IS_MONEY_PUBLIC=${is_money_public}
+		WHERE EMAIL=#{email} AND EMAIL_VALID=1 AND IS_ACTIVATED=1
 		]]>
 	</update>
 	

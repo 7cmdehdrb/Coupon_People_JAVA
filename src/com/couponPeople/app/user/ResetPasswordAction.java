@@ -59,7 +59,7 @@ public class ResetPasswordAction implements Action {
 			response.setContentType("text/html;charset=UTF-8");
 			out.println("<script>");
 			out.println("alert('Error! Your email is invalid!')");
-			out.println("location.href='http://localhost:8085/Coupon_People_Ver2/app/users/login.jsp'");
+			out.println("location.href='http://localhost:8085/Coupon_People_Ver2/app/user/loginForm.jsp'");
 			out.println("</script>");
 			out.close();
 

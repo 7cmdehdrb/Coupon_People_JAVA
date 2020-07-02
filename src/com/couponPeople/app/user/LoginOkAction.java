@@ -28,13 +28,11 @@ public class LoginOkAction implements Action {
 		UserDAO user_dao = new UserDAO();
 		Utils utils = new Utils();
 
-		String userId = request.getParameter("userId");
+		String userEmail = request.getParameter("userEmail");
 		String userPw = request.getParameter("userPw");
-		int isAdmin = request.getParameter("isAdmin").equals("normal") ? 0 : 1;
 
-		user.setEmail(userId);
+		user.setEmail(userEmail);
 		user.setPassword(utils.hashFunction(userPw));
-		user.setIs_admin(isAdmin);
 
 		resultUser = user_dao.localLogin(user);
 
@@ -44,7 +42,7 @@ public class LoginOkAction implements Action {
 			response.setContentType("text/html;charset=UTF-8");
 			out.println("<script>");
 			out.println("alert('Login Fail')");
-			out.println("location.href='http://localhost:8085/Coupon_People_Ver2/app/users/login.jsp'");
+			out.println("location.href='http://localhost:8085/Coupon_People_Ver2/app/user/loginForm.jsp'");
 			out.println("</script>");
 			out.close();
 
@@ -57,7 +55,6 @@ public class LoginOkAction implements Action {
 				session.setAttribute("email", user.getEmail());
 				session.setAttribute("nickname", String.valueOf(resultUser.get("NICKNAME")));
 				session.setAttribute("loginMethod", "LOCAL");
-				session.setAttribute("isAdmin", user.getIs_admin());
 
 				forward.setRedirect(false);
 				forward.setPath("/app/core/index.jsp");
@@ -69,7 +66,7 @@ public class LoginOkAction implements Action {
 				response.setContentType("text/html;charset=UTF-8");
 				out.println("<script>");
 				out.println("alert('Please verify your email before trying login')");
-				out.println("location.href='http://localhost:8085/Coupon_People_Ver2/app/users/login.jsp'");
+				out.println("location.href='http://localhost:8085/Coupon_People_Ver2/app/user/loginForm.jsp'");
 				out.println("</script>");
 				out.close();
 

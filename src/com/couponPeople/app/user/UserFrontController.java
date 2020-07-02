@@ -73,10 +73,10 @@ public class UserFrontController extends HttpServlet {
 			}
 
 			break;
-			
+
 		case "/users/kakaoLoginOkAction.us":
 			action = new KakaoLoginOkAction();
-			
+
 			try {
 				forward = action.execute(req, resp);
 			} catch (Exception e) {
@@ -84,7 +84,7 @@ public class UserFrontController extends HttpServlet {
 				System.err.println(e);
 				System.out.println("ERROR ON FRONT CONTROLLOR - LOGIN");
 			}
-			
+
 			break;
 
 		case "/users/logoutOkAction.us":
@@ -112,10 +112,10 @@ public class UserFrontController extends HttpServlet {
 			}
 
 			break;
-			
+
 		case "/users/resetPasswordAction.us":
 			action = new ResetPasswordAction();
-			
+
 			try {
 				forward = action.execute(req, resp);
 			} catch (Exception e) {
@@ -123,12 +123,12 @@ public class UserFrontController extends HttpServlet {
 				System.err.println(e);
 				System.out.println("ERROR ON FRONT CONTROLLOR - RESET PASSWORD");
 			}
-			
+
 			break;
-			
+
 		case "/users/resetPasswordOkAction.us":
 			action = new ResetPasswordOkAction();
-			
+
 			try {
 				forward = action.execute(req, resp);
 			} catch (Exception e) {
@@ -136,18 +136,44 @@ public class UserFrontController extends HttpServlet {
 				System.err.println(e);
 				System.out.println("ERROR ON FRONT CONTROLLOR - RESET PASSWORD OK");
 			}
-			
+
 			break;
-			
+
 		case "/users/payOkAction.us":
 			action = new PayOkAction();
-			
+
 			try {
 				forward = action.execute(req, resp);
 			} catch (Exception e) {
 				// TODO: handle exception
 				System.err.println(e);
 				System.out.println("ERROR ON FRONT CONTROLLOR - PAY OK");
+			}
+
+			break;
+
+		case "/users/changePasswordOkAction.us":
+			action = new ChangePasswordOkAction();
+
+			try {
+				forward = action.execute(req, resp);
+			} catch (Exception e) {
+				// TODO: handle exception
+				System.err.println(e);
+				System.out.println("ERROR ON FRONT CONTROLLOR - CHANGE PW");
+			}
+
+			break;
+			
+		case "/user/UserEditOk.us":
+			action = new EditUserOkAction();
+			
+			try {
+				forward = action.execute(req, resp);
+			} catch (Exception e) {
+				// TODO: handle exception
+				System.err.println(e);
+				System.out.println("ERROR ON FRONT CONTROLLOR - EDIT USER");
 			}
 			
 			break;

@@ -4,91 +4,149 @@
 <html>
 <head>
 <%@ include file="../partial/head.jsp"%>
-<jsp:useBean id="userDAO" class="com.couponPeople.app.user.dao.UserDAO"></jsp:useBean>
 </head>
 <body>
-	<%@ include file="../partial/nav.jsp"%>
+	<div class="custom" id="wrap">
+		<!--Material Design Lite -warterfall layout start--->
+		<div class="demo-layout-waterfall mdl-layout mdl-js-layout">
+			<!-- header -->
+			<%@ include file="../partial/header.jsp"%>
 
-	<div class="container mx-auto py-5">
-		<ul class="flex items-center">
-			<li class="flex-1"><i
-				style="transform: rotate(-90deg); position: relative;"
-				class="fas fa-arrow-up text-4xl mx-2" onclick="updatePhoto(-1)"></i>
-			</li>
-			<li><img style="display: none;"
-				class="mx-auto slider_img rounded-lg"
-				src="https://images.unsplash.com/photo-1542992015-4a0b729b1385?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1367&q=80"
-				alt="" srcset="" /></li>
-			<li><img style="display: none;"
-				class="mx-auto slider_img rounded-lg"
-				src="https://images.unsplash.com/photo-1534951009808-766178b47a4f?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1350&q=80"
-				alt="" srcset="" /></li>
-			<li><img style="display: none;"
-				class="mx-auto slider_img rounded-lg"
-				src="https://images.unsplash.com/photo-1521791136064-7986c2920216?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1350&q=80"
-				alt="" srcset="" /></li>
-			<li><img style="display: none;"
-				class="mx-auto slider_img rounded-lg"
-				src="https://images.unsplash.com/photo-1559526324-593bc073d938?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1350&q=80"
-				alt="" srcset="" /></li>
-			<li class="flex-1"><i style="transform: rotate(90deg);"
-				class="fas fa-arrow-up text-4xl mx-2" onclick="updatePhoto(1)"></i>
-			</li>
-		</ul>
-	</div>
+			<!-- mainVisual -->
+			<div class="mainVisual">
+				<div class="container">
+					<h2 class="main-tit">쿠폰의 민족</h2>
+					<p class="main-para">
+						내가 쓰긴 좀 뭐하고, 남주긴 아까울 때....<br> 우리 쿠폰의 민족에 팔아보는 건 어떠신지..?
+					</p>
+					<a href="#" class="main-btn"> <span>더보기 +</span>
+					</a>
+				</div>
+			</div>
 
-	<script src="${pageContext.request.contextPath}/app/static/js/slider.js"></script>
+			<!-- main start -->
+			<main class="mdl-layout__content custom">
+			<div class="page-content">
+				<!-- category section start -->
+				<section class="category">
+					<div class="container">
+						<h2 class="category-tit">카테고리</h2>
+						<div class="category-wrap">
+							<ul>
+								<li class="category-list"><a href="#"> <i
+										class="far fa-gem"></i> <span>카테고리1</span>
+								</a></li>
+								<li class="category-list"><a href="#"> <i
+										class="far fa-gem"></i> <span>카테고리2</span>
+								</a></li>
+								<li class="category-list"><a href="#"> <i
+										class="far fa-gem"></i> <span>카테고리3</span>
+								</a></li>
+								<li class="category-list"><a href="#"> <i
+										class="far fa-gem"></i> <span>카테고리4</span>
+								</a></li>
+								<li class="category-list"><a href="#"> <i
+										class="far fa-gem"></i> <span>카테고리5</span>
+								</a></li>
+								<%--
+								<li class="category-list"><a href="#"> <i
+										class="far fa-gem"></i> <span>카테고리6</span>
+								</a></li>
+								<li class="category-list"><a href="#"> <i
+										class="far fa-gem"></i> <span>카테고리7</span>
+								</a></li>
+								<li class="category-list"><a href="#"> <i
+										class="far fa-gem"></i> <span>카테고리8</span>
+								</a></li>
+								<li class="category-list"><a href="#"> <i
+										class="far fa-gem"></i> <span>카테고리9</span>
+								</a></li>
+								<li class="category-list"><a href="#"> <i
+										class="far fa-gem"></i> <span>카테고리10</span>
+								</a></li>
+								<li class="category-list"><a href="#"> <i
+										class="far fa-gem"></i> <span>카테고리11</span>
+								</a></li>
+								<li class="category-list"><a href="#"> <i
+										class="far fa-gem"></i> <span>카테고리12</span>
+								</a></li>
+								<li class="category-list"><a href="#"> <i
+										class="far fa-gem"></i> <span>카테고리13</span>
+								</a></li>
+								<li class="category-list"><a href="#"> <i
+										class="far fa-gem"></i> <span>카테고리14</span>
+								</a></li>
+								<li class="category-list"><a href="#"> <i
+										class="far fa-gem"></i> <span>카테고리15</span>
+								</a></li>
+								 --%>
+							</ul>
+						</div>
+						<!-- <a href="#" class="category-link">
+                        <span>
+                            더보기 +
+                        </span>
+                    </a> -->
+					</div>
+				</section>
+				<!-- category section end -->
 
-	<div class="container mx-auto py-5">
-		<p class="text-4xl ml-20">카테고리로 쿠폰을 찾아보세요!</p>
-		<div class="flex text-center py-10">
-			<a href="#" class="catagory_selector flex-1 mx-2 py-6"
-				style="border: solid black 5px; border-radius: 20px; cursor: pointer;">
-				<i class="fas fa-utensils block text-6xl"></i> <span
-				class="block text-xl font-bold">식사</span>
-			</a> <a href="#" class="catagory_selector flex-1 mx-2 py-6"
-				style="border: solid black 5px; border-radius: 20px; cursor: pointer;">
-				<i class="fas fa-ice-cream block text-6xl"></i> <span
-				class="block text-xl font-bold">디저트</span>
-			</a> <a href="#" class="catagory_selector flex-1 mx-2 py-6"
-				style="border: solid black 5px; border-radius: 20px; cursor: pointer;">
-				<i class="fas fa-shopping-cart block text-6xl"></i> <span
-				class="block text-xl font-bold">편의점/마트</span>
-			</a> <a href="#" class="catagory_selector flex-1 mx-2 py-6"
-				style="border: solid black 5px; border-radius: 20px; cursor: pointer;">
-				<i class="fas fa-ticket-alt block text-6xl"></i> <span
-				class="block text-xl font-bold">상품권</span>
-			</a> <a href="#" class="catagory_selector flex-1 mx-2 py-6"
-				style="border: solid black 5px; border-radius: 20px; cursor: pointer;">
-				<i class="fas fa-video block text-6xl"></i> <span
-				class="block text-xl font-bold">영화/공연</span>
-			</a> <a href="#" class="catagory_selector flex-1 mx-2 py-6"
-				style="border: solid black 5px; border-radius: 20px; cursor: pointer;">
-				<i class="fas fa-prescription-bottle-alt block text-6xl"></i> <span
-				class="block text-xl font-bold">뷰티</span>
-			</a>
+				<!-- promotion section start -->
+				<section class="promotion">
+					<div class="container">
+						<h2 class="promotion-tit">BEST</h2>
+						<div class="promotion-wrap page-content item-list">
+							<ul>
+								<!-- 아이템 리스트 아이템 시작 -->
+								<li class="promotion-item">
+									<div class="demo-card-square mdl-card mdl-shadow--2dp">
+										<a href="#">
+											<div class="mdl-card__title mdl-card--expand"
+												style="background-image: url(${pageContext.request.contextPath}/assets/imgs/test_coupon.svg);
+					                                background-position: center;
+					                                background-size: 80% auto;
+					                                background-repeat: no-repeat;">
+												<h2 class="mdl-card__title-text">
+													테스트 아이템 하나
+												</h2>
+											</div> 
+											<span class="item-owner">wanni</span>
+											<div class="mdl-card__supporting-text">
+												사고 싶으면 사든가. 맘에 안들면 신고해보시던가
+											</div> 
+											<span class="item-price">4000 won</span> 
+											<span class="item-cate"> 
+												<span class="material-icons">
+													card_giftcard 
+												</span>
+												gift
+											</span>
+										</a>
+										<div class="mdl-card__actions mdl-card--border">
+											<button
+												class="mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect">
+												Favorite</button>
+											<!--admin function-->
+											<button
+												class="mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect">
+												Penalty User</button>
+										</div>
+									</div>
+								</li>
+								<!-- 아이템 리스트 아이템 끝 -->
+							</ul>
+						</div>
+					</div>
+				</section>
+				<!-- promotion section end -->
+			</div>
+			</main>
+			<!-- main end -->
+
+			<%@ include file="../partial/footer.jsp"%>
+
 		</div>
+		<!--Material Design Lite -warterfall layout end--->
 	</div>
-
-	<div class="container mx-auto py-5">
-		<p class="text-4xl ml-20">쿠폰의 민족에서 필요한 쿠폰을 찾으세요!</p>
-		<div class="flex text-center my-10 py-10"
-			style="border: 10px #b4b4b4 solid;">
-			<div class="flex-1">
-				<p class="text-4xl">전체 회원수</p>
-				<p class="text-2xl"><%= userDAO.getTotalUser() %>명</p>
-			</div>
-			<div class="flex-1">
-				<p class="text-4xl">등록된 쿠폰수</p>
-				<p class="text-2xl">0개</p>
-			</div>
-			<div class="flex-1">
-				<p class="text-4xl">총 거래량</p>
-				<p class="text-2xl">0건</p>
-			</div>
-		</div>
-	</div>
-
-	<%@ include file="../partial/footer.jsp"%>
 </body>
 </html>

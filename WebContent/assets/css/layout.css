@@ -1,0 +1,29 @@
+@charset "utf-8";
+/* *******************************************************
+ * filename : layout.css
+ * description : entire page layout
+ * date : 2020-05-22
+******************************************************** */
+@import "../css/comp/customMaterial.css";
+@import "../css/comp/form.css";
+@import "../css/comp/modal.css";
+@import "../css/page/loginPage.css";
+@import "../css/page/userDetail.css";
+@import "../css/page/itemList.css";
+@import "../css/page/couponDetail.css";
+@import "../css/page/tradeCoupon.css";
+@import "../css/page/main.css";
+
+/*common layout*/
+.mdl-list__item {overflow: visible;}
+.mdl-layout__content.custom {padding-top: 78px;}
+body {font-family: 'Noto Sans KR', sans-serif; color: #252a34; background-color: #f9f7f7;}
+.container {width: 100%; max-width: 1200px; margin: 0 auto;}
+.user-tool {margin-left: 4px; position: relative;}
+/*header*/
+.header {background-color: #161b1b; color: #f9f7f7;     position: fixed; top: 0; left: 0; width: 100%; z-index: 9; box-shadow: 0 0 65px rgba(121, 121, 121, 0.4); border-bottom: 1px solid rgba(121, 121, 121, 0.6);}
+.nav {height: 100%;}
+.nav .container .logo i {color: #f9f7f7;}
+.nav .container .user-tool a {color: #f9f7f7;}
+.page-content{display: flex; justify-content: center;}
+.custom .mdl-menu__item a {display: block;}

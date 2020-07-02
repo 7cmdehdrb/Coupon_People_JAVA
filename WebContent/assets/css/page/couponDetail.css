@@ -1,0 +1,11 @@
+.detail .mdl-card {padding: 16px; padding-bottom: 0;}
+.detail .mdl-card .mdl-card__actions.bottom {display: flex; flex-direction: row; justify-content: end; border-top: none; border-bottom: 1px solid rgba(0,0,0,.1);}
+.detail .mdl-card img {max-width: 200px;}
+.detail .mdl-card__supporting-text {padding-bottom: 16px;}
+.custom .page-content.detail button {width: auto;}
+.custom .detail .mdl-textfield {width: calc(100% - 62px);}
+.detail-info {margin-left: 16px;}
+
+/*profile*/
+.comment__avatar {width: 48px; height: 48px;}
+.comment:not(:first-child) {margin-top: 16px;}

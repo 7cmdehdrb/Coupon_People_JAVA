@@ -1,0 +1,5 @@
+.item-list .mdl-data-table {width: 100%;}
+.item-list .mdl-data-table th.center, .item-list .mdl-data-table td.center {text-align: center}
+.item-list .mdl-data-table th.left, .item-list .mdl-data-table td.left {text-align: left}
+.mdl-textfield.is-focused .mdl-textfield__expandable-holder {max-width: calc(100% - 32px); width: 100%}
+.item-list .mdl-textfield {width: 100%}

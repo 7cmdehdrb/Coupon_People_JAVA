@@ -1,0 +1,15 @@
+/* *******************************************************
+ * filename : loginPage.css
+ * description : 로그인페이지 css
+ * date : 2020-06-15
+******************************************************** */
+.custom.mdl-layout__content {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 0 0 78px 0;
+}
+.custom .page-content {
+    flex-direction: column;
+    width: 100%;
+}

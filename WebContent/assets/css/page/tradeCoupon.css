@@ -1,0 +1,5 @@
+.trade .page-content {height: 100%;
+    display: flex;
+    justify-content: end;}
+.trade .mdl-card {width: 100%;}
+.trade .detail-info {padding-bottom: 16px;}

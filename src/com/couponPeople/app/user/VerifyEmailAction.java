@@ -27,7 +27,7 @@ public class VerifyEmailAction implements Action {
 				response.setContentType("text/html;charset=UTF-8");
 				out.println("<script>");
 				out.println("alert('Email Verification succeed!')");
-				out.println("location.href='http://localhost:8085/Coupon_People_Ver2/app/users/login.jsp'");
+				out.println("location.href='http://localhost:8085/Coupon_People_Ver2/app/user/loginForm.jsp'");
 				out.println("</script>");
 				out.close();
 			}else {
