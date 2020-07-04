@@ -87,11 +87,6 @@
 										</div>
 									</fieldset>
 								</form>
-								<div class="mdl-card__actions mdl-card--border">
-									<a class="mdl-button mdl-js-button mdl-js-ripple-effect"
-										href="${pageContext.request.contextPath}/app/user/changePw.jsp">
-										Change Password </a>
-								</div>
 							</div>
 							<!--profile card end-->
 						</div>

@@ -12,7 +12,8 @@
 
 	<%
 		CouponDAO coupon_dao = new CouponDAO();
-		List<CouponBean> coupons = coupon_dao.getCouponList();
+		List<CouponBean> coupons = new ArrayList<CouponBean>();
+		coupons = (ArrayList<CouponBean>) request.getAttribute("coupons");
 	%>
 
 	<div class="custom item-list" id="wrap">
@@ -26,7 +27,7 @@
 			<!-- Expandable Textfield -->
 			<div class="container">
 				<form
-					action="${pageContext.request.contextPath}/app/coupon/couponList.jsp"
+					action="${pageContext.request.contextPath}/coupons/searchCoupon.cu"
 					method="get">
 					<div
 						class="mdl-textfield mdl-js-textfield mdl-textfield--expandable">
@@ -34,8 +35,9 @@
 							for="sample6"> <i class="material-icons">search</i>
 						</label>
 						<div class="mdl-textfield__expandable-holder">
-							<input class="mdl-textfield__input" type="text" id="sample6">
-							<label class="mdl-textfield__label" for="sample-expandable">Expandable
+							<input class="mdl-textfield__input" type="text" id="sample6"
+								name="search_value" placeholder="검색할 쿠폰 이름" /> <label
+								class="mdl-textfield__label" for="sample-expandable">Expandable
 								Input</label>
 						</div>
 					</div>
@@ -70,18 +72,21 @@
 						<tbody>
 
 							<%
-								for(CouponBean coupon: coupons){
+								for (CouponBean coupon : coupons) {
 							%>
 
 							<tr>
-								<td class="center"><%= coupon.getCoupon_num() %></td>
-								<td class="mdl-data-table__cell--non-numeric">
-									<a href="${pageContext.request.contextPath}/app/coupon/couponDetail.jsp?id=<%= coupon.getCoupon_num() %>"><%= coupon.getCoupon_name() %></a>
+								<td class="center"><%=coupon.getCoupon_num()%></td>
+								<td class="mdl-data-table__cell--non-numeric"><a
+									href="${pageContext.request.contextPath}/app/coupon/couponDetail.jsp?id=<%= coupon.getCoupon_num() %>"><%=coupon.getCoupon_name()%></a>
 								</td>
-								<td class="center"><%= coupon_dao.alterCouponType(coupon.getCoupon_type()) %></td>
-								<td class="center"><%= coupon_dao.alterCouponCatagory(coupon.getCoupon_catagory()) %></td>
-								<td class="center"><a href="${pageContext.request.contextPath}/app/user/userDetail.jsp?id=<%= coupon.getCoupon_owner() %>"><%= coupon.getCoupon_owner() %></a></td>
-								<td class="center"><%= coupon.getCoupon_price() %>원</td>
+								<td class="center"><a
+									href="${pageContext.request.contextPath}/coupons/searchCouponBy.cu?search_field=COUPON_TYPE&search_value=<%=coupon.getCoupon_type()%>"><%=coupon_dao.alterCouponType(coupon.getCoupon_type())%></a></td>
+								<td class="center"><a
+									href="${pageContext.request.contextPath}/coupons/searchCouponBy.cu?search_field=COUPON_CATAGORY&search_value=<%=coupon.getCoupon_catagory()%>"><%=coupon_dao.alterCouponCatagory(coupon.getCoupon_catagory())%></a></td>
+								<td class="center"><a
+									href="${pageContext.request.contextPath}/app/user/userDetail.jsp?id=<%= coupon.getCoupon_owner() %>"><%=coupon.getCoupon_owner()%></a></td>
+								<td class="center"><%=coupon.getCoupon_price()%>원</td>
 							</tr>
 
 							<%

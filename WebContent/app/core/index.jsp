@@ -43,20 +43,36 @@
 						<h2 class="category-tit">카테고리</h2>
 						<div class="category-wrap">
 							<ul>
-								<li class="category-list"><a href="#"> <i
-										class="far fa-gem"></i> <span>카테고리1</span>
+								<li class="category-list">
+								<a href="${pageContext.request.contextPath}/coupons/searchCouponBy.cu?search_field=COUPON_TYPE&search_value=KAKAO"> <i
+										class="far fa-gem"></i> <span>카카오 키프티콘</span>
 								</a></li>
-								<li class="category-list"><a href="#"> <i
-										class="far fa-gem"></i> <span>카테고리2</span>
+								<li class="category-list">
+								<a href="${pageContext.request.contextPath}/coupons/searchCouponBy.cu?search_field=COUPON_TYPE&search_value=BOOK"> <i
+										class="far fa-gem"></i> <span>도서문화 상품권</span>
 								</a></li>
-								<li class="category-list"><a href="#"> <i
-										class="far fa-gem"></i> <span>카테고리3</span>
+								<li class="category-list">
+								<a href="${pageContext.request.contextPath}/coupons/searchCouponBy.cu?search_field=COUPON_TYPE&search_value=CULTURE"> <i
+										class="far fa-gem"></i> <span>컬쳐랜드 문화상품권</span>
 								</a></li>
-								<li class="category-list"><a href="#"> <i
-										class="far fa-gem"></i> <span>카테고리4</span>
+								<li class="category-list">
+								<a href="${pageContext.request.contextPath}/coupons/searchCouponBy.cu?search_field=COUPON_CATAGORY&search_value=CARD"> <i
+										class="far fa-gem"></i> <span>상품권</span>
 								</a></li>
-								<li class="category-list"><a href="#"> <i
-										class="far fa-gem"></i> <span>카테고리5</span>
+								<li class="category-list"><a href="${pageContext.request.contextPath}/coupons/searchCouponBy.cu?search_field=COUPON_CATAGORY&search_value=MOVIE"> <i
+										class="far fa-gem"></i> <span>영화/공연</span>
+								</a></li>
+								<li class="category-list"><a href="${pageContext.request.contextPath}/coupons/searchCouponBy.cu?search_field=COUPON_CATAGORY&search_value=BEAUTY"> <i
+										class="far fa-gem"></i> <span>뷰티</span>
+								</a></li>
+								<li class="category-list"><a href="${pageContext.request.contextPath}/coupons/searchCouponBy.cu?search_field=COUPON_CATAGORY&search_value=DESSERT"> <i
+										class="far fa-gem"></i> <span>디저트</span>
+								</a></li>
+								<li class="category-list"><a href="${pageContext.request.contextPath}/coupons/searchCouponBy.cu?search_field=COUPON_CATAGORY&search_value=FOOD"> <i
+										class="far fa-gem"></i> <span>식사</span>
+								</a></li>
+								<li class="category-list"><a href="${pageContext.request.contextPath}/coupons/searchCouponBy.cu?search_field=COUPON_CATAGORY&search_value=MART"> <i
+										class="far fa-gem"></i> <span>편의점/마트</span>
 								</a></li>
 							</ul>
 						</div>

@@ -54,16 +54,58 @@ public class CouponDAO {
 		return result;
 	}
 
-	public List<CouponBean> searchCouponList(HashMap<String, String> data) {
+	public List<CouponBean> searchCouponList(String searchValue) {
 
 		List<Object> temp = null;
 		List<CouponBean> result = new ArrayList<CouponBean>();
 
 		try {
-			temp = sqlsession.selectList("Coupon.searchCoupon", data);
+			temp = sqlsession.selectList("Coupon.searchCoupon", searchValue);
 
 			for (int i = 0; i < temp.size(); i++) {
-				result.add((CouponBean) result.get(i));
+				result.add((CouponBean) temp.get(i));
+			}
+
+		} catch (Exception e) {
+			// TODO: handle exception
+			System.err.println(e);
+			System.out.println("ERROR ON GET SEARCH COUPON");
+		}
+
+		return result;
+	}
+	
+	public List<CouponBean> searchCouponListBy(HashMap<String, String> data) {
+
+		List<Object> temp = null;
+		List<CouponBean> result = new ArrayList<CouponBean>();
+
+		try {
+			temp = sqlsession.selectList("Coupon.searchCouponBy", data);
+
+			for (int i = 0; i < temp.size(); i++) {
+				result.add((CouponBean) temp.get(i));
+			}
+
+		} catch (Exception e) {
+			// TODO: handle exception
+			System.err.println(e);
+			System.out.println("ERROR ON GET SEARCH COUPON");
+		}
+
+		return result;
+	}
+	
+	public List<CouponBean> searchCouponListByUser(String email) {
+
+		List<Object> temp = null;
+		List<CouponBean> result = new ArrayList<CouponBean>();
+
+		try {
+			temp = sqlsession.selectList("Coupon.searchCouponUser", email);
+
+			for (int i = 0; i < temp.size(); i++) {
+				result.add((CouponBean) temp.get(i));
 			}
 
 		} catch (Exception e) {

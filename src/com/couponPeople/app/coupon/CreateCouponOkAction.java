@@ -82,7 +82,7 @@ public class CreateCouponOkAction implements Action {
 			coupon.setCoupon_finish_date(coupon_finish_date);
 
 			if (coupon_dao.createCoupon(coupon)) {
-				forword.setPath(request.getContextPath() + "/app/coupon/couponList.jsp");
+				forword.setPath(request.getContextPath() + "/coupons/couponListAction.cu");
 				forword.setRedirect(true);
 				return forword;
 			}

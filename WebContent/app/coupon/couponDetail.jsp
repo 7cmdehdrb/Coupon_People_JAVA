@@ -86,7 +86,8 @@
 										if (coupon.getCoupon_buyer() == null) {
 									%>
 									<div class="mdl-card__actions mdl-card--border">
-										<form method="POST" >
+										<form method="POST">
+											<%-- 구매하기 만들자! --%>
 										</form>
 										<a href="#"
 											class="mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect">
@@ -104,9 +105,12 @@
 											class="mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect">
 											삭제하기 </a>
 									</div>
+									<script
+										src="${pageContext.request.contextPath}/assets/js/deleteCoupon.js"></script>
+
 									<%
-											}
 										}
+													}
 									%>
 								</c:if>
 
@@ -151,6 +155,9 @@
 											</div>
 										</fieldset>
 									</form>
+
+									<script
+										src="${pageContext.request.contextPath}/assets/js/createComment.js"></script>
 
 									<%
 										for (CommentBean comment : comments) {
@@ -233,12 +240,6 @@
 				</div>
 				<!--Material Design Lite -warterfall layout end--->
 			</div>
-
-			<script
-				src="${pageContext.request.contextPath}/assets/js/createComment.js"></script>
-			<script
-				src="${pageContext.request.contextPath}/assets/js/deleteCoupon.js"></script>
-
 		</c:otherwise>
 	</c:choose>
 </body>

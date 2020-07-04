@@ -103,26 +103,33 @@
 									</h2>
 								</div>
 
-								<if test="${ page_user_email eq email }">
-								<div class="mdl-card__actions mdl-card--border">
-									<a
-										href="${pageContext.request.contextPath}/app/user/editUser.jsp"
-										class="mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect">
-										Edit Profile </a>
-								</div>
+								<c:if test="${ page_user_email eq email }">
+									<div class="mdl-card__actions mdl-card--border">
+										<a
+											href="${pageContext.request.contextPath}/app/user/editUser.jsp"
+											class="mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect">
+											Edit Profile </a>
+									</div>
 
-								<%
-									if (user.getLogin_method().toUpperCase().equals("LOCAL")) {
-								%>
+									<%
+										if (user.getLogin_method().toUpperCase().equals("LOCAL")) {
+									%>
+									<div class="mdl-card__actions mdl-card--border">
+										<a
+											href="${pageContext.request.contextPath}/app/user/changePw.jsp"
+											class="mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect">
+											Change PassWord </a>
+									</div>
+									<%
+										}
+									%>
+								</c:if>
 								<div class="mdl-card__actions mdl-card--border">
 									<a
-										href="${pageContext.request.contextPath}/app/user/changePw.jsp"
+										href="${pageContext.request.contextPath}/coupons/searchCouponByUser.cu?id=<%=page_email %>"
 										class="mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect">
-										Change PassWord </a>
+										See Coupons </a>
 								</div>
-								<%
-									}
-								%> </if>
 								<form class="js_doReview" method="POST"
 									action="${pageContext.request.contextPath}/reviews/doReview.re">
 									<input type="hidden" name="review_to"
