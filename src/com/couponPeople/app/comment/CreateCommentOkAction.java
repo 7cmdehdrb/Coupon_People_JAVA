@@ -39,7 +39,7 @@ public class CreateCommentOkAction implements Action {
 			out.println("alert('ERROR')");
 		}
 		
-		out.println("location.href = 'http://localhost:8085/Coupon_People_Ver2/app/coupon/couponDetail.jsp?id=" + comment.getComment_coupon() + "'");
+		out.println("location.href = 'http://localhost:8085/Coupon_People_Ver2/coupons/getCouponDetail.cu?id=" + comment.getComment_coupon() + "'");
 		out.println("</script>");
 		out.close();
 		

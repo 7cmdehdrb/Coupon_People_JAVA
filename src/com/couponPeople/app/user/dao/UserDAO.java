@@ -204,7 +204,7 @@ public class UserDAO {
 	}
 	
 	public UserBean getUserProfile(String email) {
-		UserBean user = new UserBean();
+		UserBean user = null;
 		
 		try {
 			user = (UserBean)sqlsession.selectOne("User.getUserProfile", email);

@@ -222,13 +222,13 @@
 
 											<div class="mdl-card__title mdl-card--expand">
 												<label class="mdl-radio mdl-js-radio mdl-js-ripple-effect"
-													for="option-7"> <input type="radio" id="option-7"
-													class="mdl-radio__button" name="is_secret" value=1 checked />
-													<span class="mdl-radio__label">비밀댓글</span>
-												</label> <label class="mdl-radio mdl-js-radio mdl-js-ripple-effect"
 													for="option-8"> <input type="radio" id="option-8"
-													class="mdl-radio__button" name="is_secret" value="0" /> <span
-													class="mdl-radio__label">공개댓글</span>
+													class="mdl-radio__button" name="is_secret" value="0"
+													checked /> <span class="mdl-radio__label">공개댓글</span>
+												</label> <label class="mdl-radio mdl-js-radio mdl-js-ripple-effect"
+													for="option-7"> <input type="radio" id="option-7"
+													class="mdl-radio__button" name="is_secret" value=1 /> <span
+													class="mdl-radio__label">비밀댓글</span>
 												</label>
 											</div>
 										</fieldset>
@@ -281,7 +281,7 @@
 
 
 										<c:if
-											test="<%=comment.getComment_user().equals(session_email)%>">
+											test="<%=comment.getComment_user().equals(session_email) && comment.getIs_deleted() == 0%>">
 											<div class="comment__action">
 												<form method="POST"
 													action="${pageContext.request.contextPath}/comments/deleteComment.co">

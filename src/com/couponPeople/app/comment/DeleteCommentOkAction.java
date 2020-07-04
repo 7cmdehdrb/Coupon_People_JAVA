@@ -33,7 +33,7 @@ public class DeleteCommentOkAction implements Action {
 		out.println("<script>");
 		
 		out.println("alert('" + (comment_dao.deleteComment(comment) ? "DELETE!" : "ERROR...") + "')");
-		out.println("location.href = 'http://localhost:8085/Coupon_People_Ver2/app/coupon/couponDetail.jsp?id=" + comment_coupon + "'");
+		out.println("location.href = 'http://localhost:8085/Coupon_People_Ver2/coupons/getCouponDetail.cu?id=" + comment_coupon + "'");
 		
 		out.println("</script>");
 		out.close();

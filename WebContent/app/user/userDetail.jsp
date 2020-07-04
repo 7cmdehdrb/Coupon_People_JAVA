@@ -10,30 +10,22 @@
 </head>
 <body>
 
+	<%
+		String page_email = request.getParameter("id");
+		UserBean user = null;
+		
+		UserDAO user_dao = new UserDAO();
+		ReviewDAO review_dao = new ReviewDAO();
+
+		user = user_dao.getUserProfile(page_email);
+	%>
+
 	<c:if test="${email eq null}">
 		<script>
 			alert("로그인이 필요합니다");
 			location.href = "http://localhost:8085/Coupon_People_Ver2/app/user/loginForm.jsp";
 		</script>
 	</c:if>
-
-	<%
-		String page_email = request.getParameter("id");
-		UserBean user = null;
-		UserDAO user_dao = new UserDAO();
-		ReviewDAO review_dao = new ReviewDAO();
-
-		if (page_email != null) {
-			try {
-				user = new UserBean();
-				user = user_dao.getUserProfile(page_email);
-			} catch (Exception e) {
-				;
-			}
-		}
-	%>
-
-	<c:set var="page_user_email"><%=page_email%></c:set>
 
 	<c:choose>
 		<c:when test="<%=user == null%>">
