@@ -21,6 +21,7 @@ public class DeleteCommentOkAction implements Action {
 		CommentBean comment = new CommentBean();
 		CommentDAO comment_dao = new CommentDAO();
 
+		String comment_coupon = request.getParameter("comment_coupon");
 		int comment_num = Integer.parseInt(request.getParameter("comment_num"));
 		String comment_user = request.getParameter("comment_user");
 
@@ -32,8 +33,7 @@ public class DeleteCommentOkAction implements Action {
 		out.println("<script>");
 		
 		out.println("alert('" + (comment_dao.deleteComment(comment) ? "DELETE!" : "ERROR...") + "')");
-		out.println("location.href = 'http://localhost:8085/Coupon_People_Ver2/coupons/getCouponDetail.cu?id="
-				+ comment.getComment_coupon() + "'");
+		out.println("location.href = 'http://localhost:8085/Coupon_People_Ver2/app/coupon/couponDetail.jsp?id=" + comment_coupon + "'");
 		
 		out.println("</script>");
 		out.close();

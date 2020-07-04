@@ -42,7 +42,7 @@ public class CouponDAO {
 			temp = sqlsession.selectList("Coupon.getCouponList");
 
 			for (int i = 0; i < temp.size(); i++) {
-				result.add((CouponBean) result.get(i));
+				result.add((CouponBean) temp.get(i));
 			}
 
 		} catch (Exception e) {
@@ -103,6 +103,52 @@ public class CouponDAO {
 		}
 
 		return result == 1;
+	}
+
+	public String alterCouponType(String type) {
+
+		switch (type) {
+		case "KAKAO":
+			return "카카오 키프티콘";
+
+		case "BOOK":
+			return "도서문화 상품권";
+
+		case "CULTURE":
+			return "컬쳐랜드 문화상품권";
+
+		default:
+			return "오류";
+		}
+
+	}
+
+	public String alterCouponCatagory(String catagory) {
+
+		switch (catagory) {
+		case "CARD":
+			return "상품권";
+
+		case "MOVIE":
+			return "영화/공연";
+
+		case "BEAUTY":
+			return "뷰티";
+
+		case "DESSERT":
+			return "디저트";
+
+		case "FOOD":
+			return "식사";
+
+		case "MART":
+			return "편의점/마트";
+
+		default:
+			return "오류";
+
+		}
+
 	}
 
 }

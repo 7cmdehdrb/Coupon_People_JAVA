@@ -4,24 +4,23 @@
 <mapper namespace="Comment">
 	
 	<insert id="createComment" parameterType="commentBean">
-	INSERT INTO HR.COUPON_COMMENT
-	(COMMENT_NUM, COMMENT_USER, COMMENT_COUPON, COMMENT_TEXT, COMMENT_DATETIME, IS_DELETED, IS_SECRET)
-	VALUES(COUPON.COMMENT, #{comment_user}, ${comment_coupon}, #{comment_text}, SYSDATE, 0 , ${is_secret} )
+		<![CDATA[
+		INSERT INTO HR.COUPON_COMMENT
+		(COMMENT_NUM, COMMENT_USER, COMMENT_COUPON, COMMENT_TEXT, COMMENT_DATETIME, IS_DELETED, IS_SECRET)
+		VALUES(COUPON_COMMENT_SEQ.NEXTVAL, #{comment_user}, ${comment_coupon}, #{comment_text}, SYSDATE, 0 , ${is_secret})
+		]]>
 	</insert>
-	
-	<select id="getCurrentSeq" resultType="_int">
-		SELECT COUPON_COMMENT_SEQ.CURRVAL FROM DUAL
-	</select>
 	
 	<select id="getComments" parameterType="_int" resultType="commentBean">
 		SELECT * FROM HR.COUPON_COMMENT
 		WHERE COMMENT_COUPON = ${coupon_num}
+		ORDER BY COMMENT_NUM DESC
 	</select>
 	
 	<update id="deleteComment" parameterType="commentBean">
 		UPDATE HR.COUPON_COMMENT
 		SET IS_DELETED=1
-		WHERE COMMENT_NUM=${comment_coupon} AND COUPON_USER=#{comment_user}
+		WHERE COMMENT_NUM=${comment_num} AND COMMENT_USER=#{comment_user}
 	</update>
 	
 	<select id="getUserComments" parameterType="string" resultType="commentBean">

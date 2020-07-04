@@ -37,7 +37,7 @@ public class DeleteCouponOkAction implements Action {
 			
 			forward = new ActionForward();
 			forward.setRedirect(true);
-			forward.setPath(request.getContextPath() + "/app/coupons/couponList.jsp");
+			forward.setPath(request.getContextPath() + "/app/coupon/couponList.jsp");
 			
 		}else {
 			

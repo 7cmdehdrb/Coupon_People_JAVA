@@ -1,4 +1,5 @@
 <!DOCTYPE html>
+<%@page import="com.couponPeople.app.review.dao.ReviewDAO"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@page import="com.couponPeople.app.user.dao.UserDAO"%>
@@ -20,6 +21,7 @@
 		String page_email = request.getParameter("id");
 		UserBean user = null;
 		UserDAO user_dao = new UserDAO();
+		ReviewDAO review_dao = new ReviewDAO();
 
 		if (page_email != null) {
 			try {
@@ -58,15 +60,13 @@
 							<div class="demo-card-square mdl-card mdl-shadow--2dp">
 								<div class="avartar-container">
 									<c:choose>
-										<c:when test="<%= user.getProfile_image() == null%>">
+										<c:when test="<%=user.getProfile_image() == null%>">
 											<img
 												src="${pageContext.request.contextPath}/assets/imgs/profile_test.jpg"
 												alt="">
 										</c:when>
 										<c:otherwise>
-											<img
-												src="<%= user.getProfile_image() %>"
-												alt="">
+											<img src="<%=user.getProfile_image()%>" alt="">
 										</c:otherwise>
 									</c:choose>
 								</div>
@@ -86,7 +86,7 @@
 
 								<div class="mdl-card__supporting-text">score</div>
 								<div class="mdl-card__title mdl-card--expand">
-									<h2 class="mdl-card__title-text">0.0</h2>
+									<h2 class="mdl-card__title-text"><%=review_dao.getAverageReview(page_email)%></h2>
 								</div>
 
 								<div class="mdl-card__supporting-text">point</div>
@@ -94,7 +94,7 @@
 									<h2 class="mdl-card__title-text">
 										<c:choose>
 											<c:when test="${ page_user_email eq email }">
-												<%= user.getMoney() %>
+												<%=user.getMoney()%>
 											</c:when>
 											<c:otherwise>
 												<%=user.getIs_money_public() == 1 ? user.getMoney() : "비공개"%>
@@ -103,33 +103,38 @@
 									</h2>
 								</div>
 
-								<c:choose>
-									<c:when test="${ page_user_email eq email }">
-										<div class="mdl-card__actions mdl-card--border">
-											<a
-												href="${pageContext.request.contextPath}/app/user/editUser.jsp"
-												class="mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect">
-												Edit Profile </a>
-										</div>
-										
-										<% if(user.getLogin_method().toUpperCase().equals("LOCAL")){ %>
-											<div class="mdl-card__actions mdl-card--border">
-												<a
-													href="${pageContext.request.contextPath}/app/user/changePw.jsp"
-													class="mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect">
-													Change PassWord </a>
-											</div>
-										<% } %>
-										
-									</c:when>
-									<c:otherwise>
-										<div class="mdl-card__actions mdl-card--border">
-											<a href="#"
-												class="mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect">
-												Do Survey </a>
-										</div>
-									</c:otherwise>
-								</c:choose>
+								<if test="${ page_user_email eq email }">
+								<div class="mdl-card__actions mdl-card--border">
+									<a
+										href="${pageContext.request.contextPath}/app/user/editUser.jsp"
+										class="mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect">
+										Edit Profile </a>
+								</div>
+
+								<%
+									if (user.getLogin_method().toUpperCase().equals("LOCAL")) {
+								%>
+								<div class="mdl-card__actions mdl-card--border">
+									<a
+										href="${pageContext.request.contextPath}/app/user/changePw.jsp"
+										class="mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect">
+										Change PassWord </a>
+								</div>
+								<%
+									}
+								%> </if>
+								<form class="js_doReview" method="POST"
+									action="${pageContext.request.contextPath}/reviews/doReview.re">
+									<input type="hidden" name="review_to"
+										value="<%=user.getEmail()%>" /> <input type="hidden"
+										name="review_from" value="${email}" />
+								</form>
+								<div class="mdl-card__actions mdl-card--border">
+									<a onclick="doReview()"
+										class="mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect">
+										Do Survey </a>
+								</div>
+
 
 							</div>
 							<!--profile card end-->
@@ -146,9 +151,9 @@
 				<!--Material Design Lite -warterfall layout end--->
 			</div>
 
+			<script
+				src="${pageContext.request.contextPath}/assets/js/doReview.js"></script>
 		</c:otherwise>
 	</c:choose>
-
-
 </body>
 </html>

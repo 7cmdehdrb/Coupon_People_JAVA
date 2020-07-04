@@ -84,8 +84,8 @@
 					회원가입 </a>
 			</c:when>
 			<c:otherwise>
-				<a class="mdl-navigation__link" href="#"> 구매하기 </a>
-				<a class="mdl-navigation__link" href="#"> 판매하기 </a>
+				<a class="mdl-navigation__link" href="${pageContext.request.contextPath}/app/coupon/couponList.jsp"> 구매하기 </a>
+				<a class="mdl-navigation__link" href="${pageContext.request.contextPath}/app/coupon/createCoupon.jsp"> 판매하기 </a>
 				<a class="mdl-navigation__link"
 					href="${pageContext.request.contextPath}/app/user/chargeMoney.jsp">
 					충전하기 </a>

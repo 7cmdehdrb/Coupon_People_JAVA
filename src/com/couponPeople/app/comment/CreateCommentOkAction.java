@@ -22,9 +22,9 @@ public class CreateCommentOkAction implements Action {
 		CommentDAO comment_dao = new CommentDAO();
 		
 		String comment_user = request.getParameter("comment_user");
-		int comment_coupon = Integer.parseInt(request.getParameter("comment_coupon"));
+		int comment_coupon = Integer.parseInt(request.getParameter("commnet_coupon"));
 		String comment_text = request.getParameter("comment_text");
-		int is_secret = (request.getParameter("is_secret") == null ? 0 : 1);
+		int is_secret = Integer.parseInt(request.getParameter("is_secret"));
 		
 		comment.setComment_user(comment_user);
 		comment.setComment_coupon(comment_coupon);
@@ -39,7 +39,7 @@ public class CreateCommentOkAction implements Action {
 			out.println("alert('ERROR')");
 		}
 		
-		out.println("location.href = 'http://localhost:8085/Coupon_People_Ver2/coupons/getCouponDetail.cu?id=" + comment.getComment_coupon() + "'");
+		out.println("location.href = 'http://localhost:8085/Coupon_People_Ver2/app/coupon/couponDetail.jsp?id=" + comment.getComment_coupon() + "'");
 		out.println("</script>");
 		out.close();
 		

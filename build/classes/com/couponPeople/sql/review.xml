@@ -5,4 +5,31 @@
 	<select id="test" resultType="reviewBean">
 		SELECT * FROM HR.COUPON_REVIEW
 	</select>
+	
+	<select id="checkDupReview" parameterType="reviewBean" resultType="_int">
+		SELECT COUNT(*) FROM HR.COUPON_REVIEW 
+		WHERE REVIEW_TO=#{review_to} AND REVIEW_FROM=#{review_from}
+	</select>
+	
+	<insert id="createReview" parameterType="reviewBean">
+		<![CDATA[
+		INSERT INTO HR.COUPON_REVIEW
+		(REVIEW_TO, REVIEW_FROM, REVIEW)
+		VALUES(#{review_to}, #{review_from}, ${review})
+		]]>
+	</insert>
+	
+	<update id="updateReview" parameterType="reviewBean">
+		<![CDATA[
+		UPDATE HR.COUPON_REVIEW
+		SET REVIEW=${review} 
+		WHERE REVIEW_TO=#{review_to} AND REVIEW_FROM=#{review_from}
+		]]>
+	</update>
+	
+	<select id="getAverageReview" resultType="_int">
+		SELECT REVIEW FROM HR.COUPON_REVIEW 
+		WHERE REVIEW_TO=#{email}
+	</select>
+	
 </mapper>
