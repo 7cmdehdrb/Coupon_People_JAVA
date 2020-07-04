@@ -6,9 +6,6 @@ public class TradeBean {
 	private int trade_coupon;
 	private String trade_buyer;
 	private String trade_date;
-	private int is_finished;
-	private int is_determined;
-	private int is_cheated;
 
 	public TradeBean() {
 		// TODO Auto-generated constructor stub
@@ -44,30 +41,6 @@ public class TradeBean {
 
 	public void setTrade_date(String trade_date) {
 		this.trade_date = trade_date;
-	}
-
-	public int getIs_finished() {
-		return is_finished;
-	}
-
-	public void setIs_finished(int is_finished) {
-		this.is_finished = is_finished;
-	}
-
-	public int getIs_determined() {
-		return is_determined;
-	}
-
-	public void setIs_determined(int is_determined) {
-		this.is_determined = is_determined;
-	}
-
-	public int getIs_cheated() {
-		return is_cheated;
-	}
-
-	public void setIs_cheated(int is_cheated) {
-		this.is_cheated = is_cheated;
 	}
 
 }

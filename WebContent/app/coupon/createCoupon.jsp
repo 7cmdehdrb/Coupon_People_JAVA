@@ -121,7 +121,7 @@
 									<div
 										class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
 										<label class="mdl-datefield__label" for="coupon_finish_date">쿠폰
-											유효기간</label><input class="js_input mdl-textfield__input" type="date"
+											유효기간</label><input class="js_input js_dateInput mdl-textfield__input" type="date"
 											id="coupon_finish_date" name="coupon_finish_date" />
 									</div>
 								</div>

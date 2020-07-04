@@ -5,7 +5,7 @@
 [o] USER - FIND MY PASSWORD<br>
 [o] USER - SEE PROFILE<br>
 > [o] USER - SEE COUPON<br>
-> [ ] USER - SEE TRADE<br>
+> [o] USER - SEE TRADE<br>
 
 [o] USER - UPDATE MY PROFILE<br>
 [o] USER - CHARGE POINT<br>
@@ -18,7 +18,7 @@
 [o] COUPON - DELETE COUPON<br>
 <br>
 <br>
-[ ] TRADE - BUY COUPON<br>
+[o] TRADE - BUY COUPON<br>
 [ ] TRADE - REFUND COUPON<br>
 [ ] TRADE - DETERMINE BUYING COUPON<br>
 [ ] TRADE - NOTIFY COUPON IS NOT VALID<br>

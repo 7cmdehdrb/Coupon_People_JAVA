@@ -106,6 +106,12 @@
 								<c:if test="${ page_user_email eq email }">
 									<div class="mdl-card__actions mdl-card--border">
 										<a
+											href="${pageContext.request.contextPath}/coupons/searchCouponByBuyer.cu"
+											class="mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect">
+											See My Bought Coupons </a>
+									</div>
+									<div class="mdl-card__actions mdl-card--border">
+										<a
 											href="${pageContext.request.contextPath}/app/user/editUser.jsp"
 											class="mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect">
 											Edit Profile </a>
@@ -128,7 +134,7 @@
 									<a
 										href="${pageContext.request.contextPath}/coupons/searchCouponByUser.cu?id=<%=page_email %>"
 										class="mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect">
-										See Coupons </a>
+										See ${email}'s Coupons </a>
 								</div>
 								<form class="js_doReview" method="POST"
 									action="${pageContext.request.contextPath}/reviews/doReview.re">

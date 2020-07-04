@@ -87,7 +87,6 @@
 						<div class="promotion-wrap page-content item-list">
 							<ul>
 								<!-- 아이템 리스트 아이템 시작 -->
-								<%=coupons.size()%>
 
 								<%
 									for (int i = 0; i < coupons.size(); i++) {
@@ -118,7 +117,7 @@
 
 										<div class="mdl-card__actions mdl-card--border">
 											<a
-												href="${pageContext.request.contextPath}/app/coupon/couponDetail.jsp?id=<%=coupons.get(i).getCoupon_num()%>"
+												href="${pageContext.request.contextPath}/coupons/getCouponDetail.cu?id=<%=coupons.get(i).getCoupon_num()%>"
 												class="mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect">
 												보러가기</a>
 										</div>

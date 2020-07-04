@@ -78,7 +78,7 @@
 							<tr>
 								<td class="center"><%=coupon.getCoupon_num()%></td>
 								<td class="mdl-data-table__cell--non-numeric"><a
-									href="${pageContext.request.contextPath}/app/coupon/couponDetail.jsp?id=<%= coupon.getCoupon_num() %>"><%=coupon.getCoupon_name()%></a>
+									href="${pageContext.request.contextPath}/coupons/getCouponDetail.cu?id=<%= coupon.getCoupon_num() %>"> <span><%=coupon.getCoupon_buyer() != null ? (coupon.getIs_coupon_finished() == 1 ? "[사용완료]" : "<strong>[미사용]</strong>" ) : "" %></span> <%=coupon.getCoupon_name()%></a>
 								</td>
 								<td class="center"><a
 									href="${pageContext.request.contextPath}/coupons/searchCouponBy.cu?search_field=COUPON_TYPE&search_value=<%=coupon.getCoupon_type()%>"><%=coupon_dao.alterCouponType(coupon.getCoupon_type())%></a></td>

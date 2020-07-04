@@ -11,7 +11,7 @@ import com.couponPeople.action.ActionForward;
 import com.couponPeople.app.coupon.dao.CouponBean;
 import com.couponPeople.app.coupon.dao.CouponDAO;
 
-public class SearchCouponByUserAction implements Action {
+public class SearchCouponByBuyerAction implements Action {
 
 	@Override
 	public ActionForward execute(HttpServletRequest request, HttpServletResponse response) throws Exception {
@@ -22,15 +22,20 @@ public class SearchCouponByUserAction implements Action {
 		List<CouponBean> coupons = new ArrayList<>();
 		CouponDAO coupon_dao = new CouponDAO();
 
-		String id = request.getParameter("id");
+		String id = (String) request.getSession().getAttribute("email");
 
-		coupons = coupon_dao.searchCouponListByUser(id);
+		if(id != null && id != "") {
+			coupons = coupon_dao.searchCouponListByBuyer(id);
+			request.setAttribute("coupons", coupons);
 
-		request.setAttribute("coupons", coupons);
-
-		forword.setRedirect(false);
-		forword.setPath("/app/coupon/couponList.jsp");
-
+			forword.setRedirect(false);
+			forword.setPath("/app/coupon/couponList.jsp");
+		}else {
+			forword.setRedirect(true);
+			forword.setPath(request.getContextPath() + "/app/core/index.jsp");
+			
+		}
+		
 		return forword;
 	}
 

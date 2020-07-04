@@ -4,6 +4,8 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
+import javax.security.auth.message.callback.PrivateKeyCallback.Request;
+
 import org.apache.ibatis.session.SqlSession;
 import org.apache.ibatis.session.SqlSessionFactory;
 
@@ -102,7 +104,7 @@ public class CouponDAO {
 		List<CouponBean> result = new ArrayList<CouponBean>();
 
 		try {
-			temp = sqlsession.selectList("Coupon.searchCouponUser", email);
+			temp = sqlsession.selectList("Coupon.searchCouponByUser", email);
 
 			for (int i = 0; i < temp.size(); i++) {
 				result.add((CouponBean) temp.get(i));
@@ -116,6 +118,27 @@ public class CouponDAO {
 
 		return result;
 	}
+	
+	public List<CouponBean> searchCouponListByBuyer(String id) {
+		List<Object> temp = null;
+		List<CouponBean> result = new ArrayList<CouponBean>();
+
+		try {
+			temp = sqlsession.selectList("Coupon.searchCouponByBuyer", id);
+
+			for (int i = 0; i < temp.size(); i++) {
+				result.add((CouponBean) temp.get(i));
+			}
+
+		} catch (Exception e) {
+			// TODO: handle exception
+			System.err.println(e);
+			System.out.println("ERROR ON GET SEARCH COUPON");
+		}
+
+		return result;
+	}
+	
 
 	public CouponBean getCouponDetail(int coupon_num) {
 
@@ -192,5 +215,6 @@ public class CouponDAO {
 		}
 
 	}
+
 
 }

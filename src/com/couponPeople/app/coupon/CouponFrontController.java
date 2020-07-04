@@ -61,19 +61,6 @@ public class CouponFrontController extends HttpServlet {
 			
 			break;
 			
-		case "/coupon/getCouponList.cu":
-			action = new GetCouponList();
-			
-			try {
-				forward = action.execute(req, resp);
-			} catch (Exception e) {
-				// TODO: handle exception
-				System.err.println(e);
-				System.out.println("ERROR ON COUPON FRONT CONTROLLER - DELETE COUPON");
-			}
-			
-			break;
-			
 		case "/coupons/deleteCouponOkAction.cu":
 			action = new DeleteCouponOkAction();
 			
@@ -122,6 +109,19 @@ public class CouponFrontController extends HttpServlet {
 				// TODO: handle exception
 				System.err.println(e);
 				System.out.println("ERROR ON COUPON FRONT CONTROLLER - SEARCH BY COUPON");
+			}
+			
+			break;
+			
+		case "/coupons/searchCouponByBuyer.cu":
+			action = new SearchCouponByBuyerAction();
+			
+			try {
+				forward = action.execute(req, resp);
+			} catch (Exception e) {
+				// TODO: handle exception
+				System.err.println(e);
+				System.out.println("ERROR ON COUPON FRONT CONTROLLER - SEARCH BY BUYER COUPON");
 			}
 			
 			break;

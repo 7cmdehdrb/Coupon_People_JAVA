@@ -11,14 +11,16 @@
 	</insert>
 		
 	<select id="getCouponList" resultType="couponBean">
-		SELECT COUPON_NUM, COUPON_NAME, COUPON_PRICE, COUPON_CATAGORY, COUPON_TYPE, COUPON_OWNER
+		<![CDATA[
+		SELECT COUPON_NUM, COUPON_NAME, COUPON_PRICE, COUPON_CATAGORY, COUPON_TYPE, COUPON_OWNER, COUPON_BUYER
 		FROM HR.COUPON_COUPON
-		WHERE COUPON_BUYER IS NULL
+		WHERE COUPON_BUYER IS NULL AND (SYSDATE + 7) < COUPON_FINISH_DATE
 		ORDER BY COUPON_NUM ASC
+		]]>
 	</select>
 	
 	<select id="getCouponDetail" parameterType="_int" resultType="couponBean">
-		SELECT COUPON_NUM, COUPON_NAME, COUPON_PRICE, COUPON_DESCRIPTION, COUPON_CATAGORY, COUPON_TYPE, COUPON_OWNER, TO_CHAR(COUPON_FINISH_DATE)
+		SELECT * 
 		FROM HR.COUPON_COUPON
 		WHERE COUPON_NUM = ${coupon_num}
 	</select>
@@ -26,32 +28,51 @@
 	<delete id="removeCoupon" parameterType="map">
 		<![CDATA[
 		DELETE FROM HR.COUPON_COUPON
-		WHERE COUPON_NUM = ${coupon_num} AND COUPON_OWNER = #{coupon_owner}
+		WHERE COUPON_NUM = ${coupon_num} AND COUPON_OWNER = #{coupon_owner} AND COUPON_BUYER IS NULL
 		]]>
 	</delete>
 	
 	<select id="searchCoupon" parameterType="string" resultType="couponBean">
 		<![CDATA[
-		SELECT COUPON_NUM, COUPON_NAME, COUPON_PRICE, COUPON_CATAGORY, COUPON_TYPE, COUPON_OWNER
+		SELECT COUPON_NUM, COUPON_NAME, COUPON_PRICE, COUPON_CATAGORY, COUPON_TYPE, COUPON_OWNER, COUPON_BUYER
 		FROM HR.COUPON_COUPON
-		WHERE COUPON_NAME LIKE '%${search_value}%' AND COUPON_BUYER IS NULL
+		WHERE COUPON_NAME LIKE '%${search_value}%' AND COUPON_BUYER IS NULL AND (SYSDATE + 7) < COUPON_FINISH_DATE 
 		]]>
 	</select>
 		
 	<select id="searchCouponBy" parameterType="map" resultType="couponBean">
 		<![CDATA[
-		SELECT COUPON_NUM, COUPON_NAME, COUPON_PRICE, COUPON_CATAGORY, COUPON_TYPE, COUPON_OWNER
+		SELECT COUPON_NUM, COUPON_NAME, COUPON_PRICE, COUPON_CATAGORY, COUPON_TYPE, COUPON_OWNER, COUPON_BUYER 
 		FROM HR.COUPON_COUPON
-		WHERE ${search_field} = #{search_value} AND COUPON_BUYER IS NULL
+		WHERE ${search_field} = #{search_value} AND COUPON_BUYER IS NULL AND (SYSDATE + 7) < COUPON_FINISH_DATE 
+		ORDER BY COUPON_NUM ASC
 		]]>
 	</select>
 	
-	<select id="searchCouponUser" parameterType="string" resultType="couponBean">
+	<select id="searchCouponByUser" parameterType="string" resultType="couponBean">
 		<![CDATA[
-		SELECT COUPON_NUM, COUPON_NAME, COUPON_PRICE, COUPON_CATAGORY, COUPON_TYPE, COUPON_OWNER
+		SELECT COUPON_NUM, COUPON_NAME, COUPON_PRICE, COUPON_CATAGORY, COUPON_TYPE, COUPON_OWNER, COUPON_BUYER 
 		FROM HR.COUPON_COUPON
-		WHERE COUPON_OWNER = #{email} AND COUPON_BUYER IS NULL
+		WHERE COUPON_OWNER = #{email} 
+		ORDER BY COUPON_NUM ASC
 		]]>
 	</select>
+	
+	<select id="searchCouponByBuyer" parameterType="string" resultType="couponBean">
+		<![CDATA[
+		SELECT * 
+		FROM HR.COUPON_COUPON
+		WHERE COUPON_BUYER = #{id}
+		ORDER BY COUPON_NUM ASC
+		]]>
+	</select>
+	
+	<update id="createTrade" parameterType="tradeBean">
+		<![CDATA[
+		UPDATE HR.COUPON_COUPON
+		SET COUPON_BUYER=#{trade_buyer} 
+		WHERE COUPON_NUM=${trade_coupon} AND COUPON_BUYER IS NULL AND (SYSDATE + 7) < COUPON_FINISH_DATE 
+		]]>
+	</update>
 	
 </mapper>

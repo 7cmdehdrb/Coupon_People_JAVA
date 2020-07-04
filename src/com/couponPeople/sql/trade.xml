@@ -5,4 +5,12 @@
 	<select id="test" resultType="tradeBean">
 		SELECT * FROM HR.COUPON_TRADE
 	</select>
+	
+	<insert id="createTrade" parameterType="tradeBean">
+		<![CDATA[
+		INSERT INTO HR.COUPON_TRADE
+		(TRADE_NUM, TRADE_COUPON, TRADE_BUYER, TRADE_DATE)
+		VALUES(COUPON_TRADE_SEQ.NEXTVAL, ${trade_coupon}, #{trade_buyer}, SYSDATE)
+		]]>
+	</insert>
 </mapper>
