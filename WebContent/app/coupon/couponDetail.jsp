@@ -87,6 +87,12 @@
 											OWNER : <a
 												href="${pageContext.request.contextPath}/app/user/userDetail.jsp?id=<%=coupon.getCoupon_owner()%>"><span><%=coupon.getCoupon_owner()%></span></a>
 										</p>
+										<c:if test="<%=coupon.getCoupon_buyer() != null%>">
+											<p>
+												BUYER : <a
+													href="${pageContext.request.contextPath}/app/user/userDetail.jsp?id=<%=coupon.getCoupon_buyer()%>"><span><%=coupon.getCoupon_buyer()%></span></a>
+											</p>
+										</c:if>
 										<p>
 											TYPE : <span><%=coupon_dao.alterCouponType(coupon.getCoupon_type())%></span>
 										</p>
@@ -115,7 +121,6 @@
 												<form class="js_tradeForm"
 													action="${pageContext.request.contextPath}/trades/createTrade.tr"
 													method="POST">
-													<%-- 구매하기 만들자! --%>
 													<input type="hidden" name="price"
 														value=<%=coupon.getCoupon_price()%> /> <input
 														type="hidden" name="trade_coupon" value="<%=coupon_id%>" />
@@ -167,30 +172,95 @@
 														</div>
 													</c:when>
 													<c:otherwise>
+														<c:choose>
+															<c:when
+																test="<%=coupon.getIs_coupon_cheated() == 0
+															&& coupon.getIs_coupon_finished() == 0%>">
+																<div class="mdl-card__actions mdl-card--border">
+																	<a
+																		class="mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect"
+																		data-toggle="modal" data-target="#setIsFinished">
+																		구매확정 </a>
+
+																</div>
+																<div class="mdl-card__actions mdl-card--border">
+																	<a
+																		class="mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect"
+																		data-toggle="modal" data-target="#setIsCheated">
+																		허위매물 신고 </a>
+
+																</div>
+															</c:when>
+															<c:when test="<%=coupon.getIs_coupon_cheated() == 1%>">
+																<div class="mdl-card__actions mdl-card--border">
+																	<a
+																		class="mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect">
+																		<strong style="color: red;'"><i>허위 매물로
+																				신고된 상품입니다</i></strong>
+																	</a>
+																</div>
+															</c:when>
+															<c:otherwise>
+																<div class="mdl-card__actions mdl-card--border">
+																	<a
+																		class="mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect">
+																		<strong style="color: blue;'"><i>거래가 완전히
+																				종료된 상품입니다</i></strong>
+																	</a>
+																</div>
+															</c:otherwise>
+														</c:choose>
+													</c:otherwise>
+												</c:choose>
+											</c:if>
+											<c:if
+												test="<%=coupon.getCoupon_owner().equals(session_email)%>">
+												<c:choose>
+													<c:when test="<%=coupon.getIs_coupon_cheated() == 1%>">
 														<div class="mdl-card__actions mdl-card--border">
 															<a
-																class="mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect"
-																data-toggle="modal" data-target="setIsFinished">
-																구매확정 </a>
-
+																class="mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect">
+																<strong style="color: red;'"><i>허위 매물로 신고된
+																		상품입니다</i></strong>
+															</a>
 														</div>
+													</c:when>
+													<c:when test="<%=coupon.getIs_coupon_finished() == 1%>">
 														<div class="mdl-card__actions mdl-card--border">
 															<a
-																class="mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect"
-																data-toggle="modal" data-target="setIsCheated"> 허위매물
-																신고 </a>
-
+																class="mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect">
+																<strong style="color: blue;'"><i>거래가 완전히
+																		종료된 상품입니다</i></strong>
+															</a>
+														</div>
+													</c:when>
+													<c:otherwise>
+														<div style="display: none;" class="js_manualFinish mdl-card__actions mdl-card--border">
+															<a data-toggle="modal" data-target="#manualFinish"
+																class="mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect">
+																<strong style="color: red;'"><i>강제 대금 수령</i></strong>
+															</a>
 														</div>
 													</c:otherwise>
 												</c:choose>
 											</c:if>
 										</c:otherwise>
 									</c:choose>
-									<%-- buyer is not null --%>
-
-
 								</c:if>
+
+								<%-- buyer is not null --%>
+
 								<%-- user is logged in --%>
+
+								<%-- FINAL FORM --%>
+								<form class="js_tradeSuggestion" method="POST"
+									action="${pageContext.request.contextPath}/trades/tradeSuggestionOkAction.tr">
+									<input class="js_actionForm" type="hidden" name="action" /> <input
+										class="js_couponForm" type="hidden" name="trade_coupon"
+										value="<%=coupon_id%>" /> <input type="hidden" name="price"
+										value="<%=coupon.getCoupon_price()%>" /> <input type="hidden"
+										name="owner" value="<%=coupon.getCoupon_owner()%>" />
+								</form>
 
 								<!-- comment container start -->
 								<div
@@ -372,7 +442,8 @@
 								<div class="modal-footer">
 									<button type="button" class="btn btn-secondary"
 										data-dismiss="modal">취소</button>
-									<button type="button" class="btn btn-primary">구매결정</button>
+									<button type="button" class="btn btn-primary"
+										onclick="makeSuggestion('determine')">구매결정</button>
 								</div>
 							</div>
 						</div>
@@ -395,7 +466,8 @@
 								<div class="modal-footer">
 									<button type="button" class="btn btn-secondary"
 										data-dismiss="modal">취소</button>
-									<button type="button" class="btn btn-primary">환불요청</button>
+									<button type="button" class="btn btn-primary"
+										onclick="makeSuggestion('refund')">환불요청</button>
 								</div>
 							</div>
 						</div>
@@ -422,7 +494,8 @@
 								<div class="modal-footer">
 									<button type="button" class="btn btn-secondary"
 										data-dismiss="modal">취소</button>
-									<button type="button" class="btn btn-primary">구매 확정</button>
+									<button type="button" class="btn btn-primary"
+										onclick="makeSuggestion('finish')">구매 확정</button>
 								</div>
 							</div>
 						</div>
@@ -448,7 +521,36 @@
 								<div class="modal-footer">
 									<button type="button" class="btn btn-secondary"
 										data-dismiss="modal">취소</button>
-									<button type="button" class="btn btn-primary">신고하기</button>
+									<button type="button" class="btn btn-primary"
+										onclick="makeSuggestion('cheat')">신고하기</button>
+								</div>
+							</div>
+						</div>
+					</div>
+					
+					<!-- Modal 대금 수령 -->
+					<div class="modal fade" id="manualFinish" tabindex="-1"
+						role="dialog" aria-labelledby="exampleModalLabel"
+						aria-hidden="true">
+						<div class="modal-dialog">
+							<div class="modal-content">
+								<div class="modal-header">
+									<h5 class="modal-title" id="exampleModalLabel">허위매물 신고</h5>
+									<button type="button" class="close" data-dismiss="modal"
+										aria-label="Close">
+										<span aria-hidden="true">&times;</span>
+									</button>
+								</div>
+								<div class="modal-body">
+									본 쿠폰의 판매 대금을 강제로 수령합니다
+									<br>
+									본 기능은 구매일 기준 1주일 이후부터 사용 가능합니다
+								</div>
+								<div class="modal-footer">
+									<button type="button" class="btn btn-secondary"
+										data-dismiss="modal">취소</button>
+									<button type="button" class="btn btn-primary"
+										onclick="makeSuggestion('manualFinish')">수령하기</button>
 								</div>
 							</div>
 						</div>
@@ -458,6 +560,14 @@
 
 					<script
 						src="${pageContext.request.contextPath}/assets/js/buyCoupon.js"></script>
+					<script
+						src="${pageContext.request.contextPath}/assets/js/suggestCoupon.js"></script>
+						<script>
+							const contextPath = "${pageContext.request.contextPath}";
+							const couponId = "<%=coupon.getCoupon_num()%>";
+							let manualFinishCheck = false;
+						</script>
+						<script src="${pageContext.request.contextPath}/assets/js/manualFinish.js"></script>
 				</div>
 				<!--Material Design Lite -warterfall layout end--->
 

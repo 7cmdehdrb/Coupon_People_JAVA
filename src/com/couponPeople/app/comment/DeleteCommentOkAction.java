@@ -21,9 +21,9 @@ public class DeleteCommentOkAction implements Action {
 		CommentBean comment = new CommentBean();
 		CommentDAO comment_dao = new CommentDAO();
 
+		String comment_user = (String)request.getSession().getAttribute("email");
 		String comment_coupon = request.getParameter("comment_coupon");
 		int comment_num = Integer.parseInt(request.getParameter("comment_num"));
-		String comment_user = request.getParameter("comment_user");
 
 		comment.setComment_num(comment_num);
 		comment.setComment_user(comment_user);

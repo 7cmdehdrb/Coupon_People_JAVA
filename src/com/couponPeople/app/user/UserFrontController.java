@@ -48,19 +48,6 @@ public class UserFrontController extends HttpServlet {
 
 			break;
 
-		case "/users/checkEmailValidOkAction.us":
-			action = new CheckEmailValidOkAction();
-
-			try {
-				forward = action.execute(req, resp);
-			} catch (Exception e) {
-				// TODO: handle exception
-				System.err.println(e);
-				System.out.println("ERROR ON FRONT CONTROLLOR - CHECK EMAIL VALID");
-			}
-
-			break;
-
 		case "/users/loginOkAction.us":
 			action = new LoginOkAction();
 

@@ -9,8 +9,23 @@
 	<insert id="createTrade" parameterType="tradeBean">
 		<![CDATA[
 		INSERT INTO HR.COUPON_TRADE
-		(TRADE_NUM, TRADE_COUPON, TRADE_BUYER, TRADE_DATE)
-		VALUES(COUPON_TRADE_SEQ.NEXTVAL, ${trade_coupon}, #{trade_buyer}, SYSDATE)
+		(TRADE_COUPON, TRADE_BUYER, TRADE_DATE)
+		VALUES(${trade_coupon}, #{trade_buyer}, SYSDATE)
 		]]>
 	</insert>
+	
+	<insert id="deleteTrade" parameterType="tradeBean">
+		<![CDATA[
+		DELETE FROM HR.COUPON_TRADE
+		WHERE TRADE_COUPON=${trade_coupon} AND TRADE_BUYER=#{trade_buyer}
+		]]>
+	</insert>
+	
+	<select id="checkOutdatedTrade" parameterType="_int" resultType="_int">
+		<![CDATA[
+		SELECT COUNT(*) FROM HR.COUPON_TRADE 
+		WHERE TRADE_COUPON=${trade_coupon} AND (TRADE_DATE + 7) < SYSDATE 
+		]]>
+	</select>
+	
 </mapper>

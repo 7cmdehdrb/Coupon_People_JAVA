@@ -22,7 +22,7 @@ public class PayOkAction implements Action {
 		response.setCharacterEncoding("UTF-8");
 		response.setContentType("text/html;charset=UTF-8");
 
-		String userEmail = request.getParameter("user");
+		String userEmail = (String)request.getSession().getAttribute("email");
 		String chargeMoney = request.getParameter("charge");
 		
 		UserDAO user_dao = new UserDAO();

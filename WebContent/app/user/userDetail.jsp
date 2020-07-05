@@ -11,12 +11,16 @@
 <body>
 
 	<%
+		String session_email = null;
 		String page_email = request.getParameter("id");
 		UserBean user = null;
+		
+		String local = "LOCAL";
 		
 		UserDAO user_dao = new UserDAO();
 		ReviewDAO review_dao = new ReviewDAO();
 
+		session_email = (String) request.getSession().getAttribute("email");
 		user = user_dao.getUserProfile(page_email);
 	%>
 
@@ -85,7 +89,7 @@
 								<div class="mdl-card__title mdl-card--expand">
 									<h2 class="mdl-card__title-text">
 										<c:choose>
-											<c:when test="${ page_user_email eq email }">
+											<c:when test="<%= page_email.equals(session_email) %>">
 												<%=user.getMoney()%>
 											</c:when>
 											<c:otherwise>
@@ -95,7 +99,8 @@
 									</h2>
 								</div>
 
-								<c:if test="${ page_user_email eq email }">
+								<c:if test="<%= page_email.equals(session_email) %>">
+								
 									<div class="mdl-card__actions mdl-card--border">
 										<a
 											href="${pageContext.request.contextPath}/coupons/searchCouponByBuyer.cu"
@@ -109,18 +114,15 @@
 											Edit Profile </a>
 									</div>
 
-									<%
-										if (user.getLogin_method().toUpperCase().equals("LOCAL")) {
-									%>
-									<div class="mdl-card__actions mdl-card--border">
-										<a
-											href="${pageContext.request.contextPath}/app/user/changePw.jsp"
-											class="mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect">
-											Change PassWord </a>
-									</div>
-									<%
-										}
-									%>
+									<c:if test="<%= local.equals(user.getLogin_method().toUpperCase()) %>">
+										<div class="mdl-card__actions mdl-card--border">
+											<a
+												href="${pageContext.request.contextPath}/app/user/changePw.jsp"
+												class="mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect">
+												Change PassWord </a>
+										</div>
+									</c:if>
+									
 								</c:if>
 								<div class="mdl-card__actions mdl-card--border">
 									<a

@@ -21,7 +21,7 @@ public class DoReview implements Action {
 		ReviewDAO review_dao = new ReviewDAO();
 		
 		String review_to = request.getParameter("review_to");
-		String review_from = request.getParameter("review_from");
+		String review_from = (String)request.getSession().getAttribute("email");
 		
 		review.setReview_from(review_from);
 		review.setReview_to(review_to);

@@ -23,7 +23,7 @@ public class CreateTradeOkAction implements Action {
 		
 		int price = Integer.parseInt(request.getParameter("price"));
 		String trade_coupon = request.getParameter("trade_coupon");
-		String trade_buyer = request.getParameter("trade_buyer");
+		String trade_buyer = (String)request.getSession().getAttribute("email");
 		
 		trade.setTrade_coupon(Integer.parseInt(trade_coupon));
 		trade.setTrade_buyer(trade_buyer);

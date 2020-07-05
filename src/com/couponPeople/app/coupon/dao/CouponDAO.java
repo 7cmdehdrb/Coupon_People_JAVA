@@ -4,8 +4,6 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
-import javax.security.auth.message.callback.PrivateKeyCallback.Request;
-
 import org.apache.ibatis.session.SqlSession;
 import org.apache.ibatis.session.SqlSessionFactory;
 
@@ -141,17 +139,16 @@ public class CouponDAO {
 	
 
 	public CouponBean getCouponDetail(int coupon_num) {
-
 		CouponBean result = null;
 
 		try {
-			result = sqlsession.selectOne("Coupon.getCouponDetail", coupon_num);
+			result = (CouponBean)sqlsession.selectOne("Coupon.getCouponDetail", coupon_num);
 		} catch (Exception e) {
 			// TODO: handle exception
 			System.err.println(e);
 			System.out.println("ERROR ON GET COUPON DETAIL");
 		}
-
+		
 		return result;
 	}
 

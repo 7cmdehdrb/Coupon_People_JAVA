@@ -21,7 +21,7 @@ public class CreateCommentOkAction implements Action {
 		CommentBean comment = new CommentBean();
 		CommentDAO comment_dao = new CommentDAO();
 		
-		String comment_user = request.getParameter("comment_user");
+		String comment_user = (String)request.getSession().getAttribute("email");
 		int comment_coupon = Integer.parseInt(request.getParameter("commnet_coupon"));
 		String comment_text = request.getParameter("comment_text");
 		int is_secret = Integer.parseInt(request.getParameter("is_secret"));

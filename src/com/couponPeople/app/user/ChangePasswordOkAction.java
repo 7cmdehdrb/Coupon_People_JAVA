@@ -24,7 +24,7 @@ public class ChangePasswordOkAction implements Action {
 		UserDAO user_dao = new UserDAO();
 		HashMap<String, String> data = new HashMap<>();
 		
-		String user_email = request.getParameter("userEmail");
+		String user_email = (String)request.getSession().getAttribute("email");
 		String old_pw = request.getParameter("pw_1");
 		String new_pw = request.getParameter("pw_2");
 		

@@ -51,7 +51,7 @@ public class CreateCouponOkAction implements Action {
 			String coupon_price = multi.getParameter("coupon_price");
 			String coupon_type = multi.getParameter("coupon_type");
 			String coupon_catagory = multi.getParameter("coupon_catagory");
-			String coupon_owner = multi.getParameter("coupon_owner");
+			String coupon_owner = (String)request.getSession().getAttribute("email");
 			String coupon_finish_date = multi.getParameter("coupon_finish_date");
 
 			String now = new SimpleDateFormat("yyyyMMddHmsS").format(new Date()); // 현재시간

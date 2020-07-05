@@ -11,7 +11,7 @@
 <body>
 
 	<%
-		String session_email = (String)request.getSession().getAttribute("email");
+		String session_email = (String) request.getSession().getAttribute("email");
 		CouponDAO coupon_dao = new CouponDAO();
 		List<CouponBean> coupons = new ArrayList<CouponBean>();
 		coupons = (ArrayList<CouponBean>) request.getAttribute("coupons");
@@ -80,26 +80,34 @@
 								<td class="center"><%=coupon.getCoupon_num()%></td>
 								<td class="mdl-data-table__cell--non-numeric"><a
 									href="${pageContext.request.contextPath}/coupons/getCouponDetail.cu?id=<%= coupon.getCoupon_num() %>">
-									<c:if test="<%=coupon.getCoupon_buyer() != null %>">
-									<%-- 필요한거: 판매완료 / 구매완료 / 사용완료 --%>
-										<c:if test="<%=session_email != null %>"> <%-- 판매완료 --%>
-											<c:choose>
-												<c:when test="<%=coupon.getCoupon_buyer().equals(session_email) %>">
+										<c:if test="<%=coupon.getCoupon_buyer() != null%>">
+											<%-- 필요한거: 판매완료 / 구매완료 / 사용완료 --%>
+											<c:if test="<%=session_email != null%>">
+												<%-- 판매완료 --%>
+												<c:if
+													test="<%=coupon.getCoupon_buyer().equals(session_email)%>">
 													<c:choose>
-														<c:when test="<%=coupon.getIs_coupon_finished() == 0 %>">
+														<c:when test="<%=coupon.getIs_coupon_finished() == 0%>">
 															<strong>[구매완료]</strong>
 														</c:when>
 														<c:otherwise>
 															<strong>[사용완료]</strong>
 														</c:otherwise>
 													</c:choose>
-												</c:when>
-												<c:otherwise><strong>[판매완료]</strong></c:otherwise>
-											</c:choose>
-										</c:if>
-									</c:if>
-									<%=coupon.getCoupon_name()%></a>
-								</td>
+												</c:if>
+												<c:if
+													test="<%=coupon.getCoupon_owner().equals(session_email)%>">
+													<c:choose>
+														<c:when test="<%=coupon.getIs_coupon_finished() == 0%>">
+															<strong>[승인전]</strong>
+														</c:when>
+														<c:otherwise>
+															<strong>[승인완료]</strong>
+														</c:otherwise>
+													</c:choose>
+												</c:if>
+											</c:if>
+										</c:if> <%=coupon.getCoupon_name()%></a></td>
 								<td class="center"><a
 									href="${pageContext.request.contextPath}/coupons/searchCouponBy.cu?search_field=COUPON_TYPE&search_value=<%=coupon.getCoupon_type()%>"><%=coupon_dao.alterCouponType(coupon.getCoupon_type())%></a></td>
 								<td class="center"><a

@@ -47,7 +47,32 @@ public class TradeFrontController extends HttpServlet {
 			}
 			
 			break;
+			
+		case "/trades/tradeSuggestionOkAction.tr":
+			action = new TradeSuggestionOkAction();
+			
+			try {
+				forward = action.execute(req, resp);
+			} catch (Exception e) {
+				// TODO: handle exception
+				System.err.println(e);
+				System.out.println("ERROR ON FRONT CONTROLLER - TRADE OK");
+			}
+			
+			break;
 
+		case "/trades/checkOutdatedTrade.tr":
+			action = new CheckOutdatedTradeOkAction();
+			
+			try {
+				forward = action.execute(req, resp);
+			} catch (Exception e) {
+				// TODO: handle exception
+				System.err.println(e);
+				System.out.println("ERROR ON FRONT CONTROLLER - CHECK OUTDATED");
+			}
+			
+			
 		default:
 			forward = new ActionForward();
 			forward.setRedirect(false);

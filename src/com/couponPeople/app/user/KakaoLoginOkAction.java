@@ -1,13 +1,10 @@
 package com.couponPeople.app.user;
 
 import java.io.PrintWriter;
-import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
-
-import org.apache.jasper.tagplugins.jstl.core.ForEach;
 
 import com.couponPeople.action.Action;
 import com.couponPeople.action.ActionForward;
